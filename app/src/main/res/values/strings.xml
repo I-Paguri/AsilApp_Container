@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">AsilApp_Container</string>
+    <string name="app_name">AsilApp Container</string>
+    <string name="welcome_message">Welcome to AsilApp Container!</string>
+    <string name="welcome_message_explain">Here you can find your medical equipment.</string>
+    <string name="sign_in">Sign in</string>
+
 </resources>
