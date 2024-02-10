@@ -44,7 +44,7 @@ public class DatabaseAdapter {
                             if (documentSnapshot.exists()) {
                                 String email = (String) documentSnapshot.get("email");
                                 String password = (String) documentSnapshot.get("password");
-                                if (email != null && password != null) {
+                                if (email != null) {
                                     credential = true;
                                     Toast.makeText(context, "Ci sono", Toast.LENGTH_SHORT).show();
                                 }
