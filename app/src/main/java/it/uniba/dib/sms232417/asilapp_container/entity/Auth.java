@@ -2,13 +2,11 @@ package it.uniba.dib.sms232417.asilapp_container.entity;
 
 public class Auth {
     private String tokenQr;
-    private String email;
-    private String password;
+    private String UUID;
 
-    public Auth(String tokenQr, String email, String password) {
+    public Auth(String tokenQr, String email) {
         this.tokenQr = tokenQr;
-        this.email = email;
-        this.password = password;
+        this.UUID = email;
     }
 
     public String getTokenQr() {
@@ -19,19 +17,12 @@ public class Auth {
         this.tokenQr = tokenQr;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUUID() {
+        return UUID;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

@@ -16,7 +16,7 @@
         style="@style/TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="QR Code Authentication"
+        android:text="@string/welcome_message"
         android:layout_centerHorizontal="true"
         />
     <TextView
@@ -24,7 +24,7 @@
         style="@style/SubtitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Puoi scansionare il QR Code per accedere al sistema, tramite AsilApp"
+        android:text="@string/welcome_message_explain"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/title_app"
         android:layout_marginLeft="25dp"
@@ -39,12 +39,13 @@
         android:layout_centerHorizontal="true"/>
 
     <Button
+        android:layout_marginTop="20dp"
         android:id="@+id/generaQR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/qrCode"
         android:layout_centerInParent="true"
-        android:text="Genera QR"></Button>
+        android:text="@string/generate_qr"></Button>
 
 
 </RelativeLayout>

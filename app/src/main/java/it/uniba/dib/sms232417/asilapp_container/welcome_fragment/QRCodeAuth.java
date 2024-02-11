@@ -1,9 +1,12 @@
 package it.uniba.dib.sms232417.asilapp_container.welcome_fragment;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.ktx.Firebase;
@@ -28,7 +32,10 @@ import java.util.Map;
 import java.util.UUID;
 
 import it.uniba.dib.sms232417.asilapp_container.R;
+import it.uniba.dib.sms232417.asilapp_container.SensorActivity;
 import it.uniba.dib.sms232417.asilapp_container.adapter.DatabaseAdapter;
+import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
+import it.uniba.dib.sms232417.asilapp_container.interfaces.OnPatientCallbackInterface;
 
 public class QRCodeAuth extends Fragment {
 
@@ -55,7 +62,30 @@ public class QRCodeAuth extends Fragment {
                 btnQrCode.setVisibility(View.GONE);
 
                 dbAdapter = new DatabaseAdapter(getContext());
-                dbAdapter.uploadUUIDToken(uuid.toString());
+                dbAdapter.uploadUUIDToken(uuid.toString(), new OnPatientCallbackInterface() {
+                    @Override
+                    public void onCallback(Patient patient) {
+                        Intent intent = new Intent(getContext(), SensorActivity.class);
+                        intent.putExtra("loggedPatient", (Parcelable) patient);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCallbackError(Exception exception, String message) {
+                        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getContext());
+                        builder.setTitle("Errore");
+                        builder.setMessage(message);
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                qrCode.setVisibility(View.GONE);
+                                btnQrCode.setVisibility(View.VISIBLE);
+                            }
+                        });
+                        builder.show();
+
+                    }
+                });
                 //dbAdapter.checkLogin(uuid.toString());
             }
         });

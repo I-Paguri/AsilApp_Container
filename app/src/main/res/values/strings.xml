@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AsilApp Container</string>
     <string name="welcome_message">Welcome to AsilApp Container!</string>
-    <string name="welcome_message_explain">Here you can find your medical equipment.</string>
-    <string name="sign_in">Sign in</string>
+    <string name="welcome_message_explain">You can scan the QR code to access the container, via AsilApp</string>
+    <string name="generate_qr">Generate QR Code</string>
 
 </resources>
