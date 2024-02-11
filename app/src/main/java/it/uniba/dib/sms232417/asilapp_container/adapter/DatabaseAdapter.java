@@ -2,11 +2,11 @@ package it.uniba.dib.sms232417.asilapp_container.adapter;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import it.uniba.dib.sms232417.asilapp_container.entity.Auth;
@@ -26,7 +26,9 @@ public class DatabaseAdapter {
         this.context = context;
     }
     public void uploadUUIDToken(String token, OnPatientCallbackInterface callback){
-        Auth auth = new Auth(token, "");
+        String uuid = "";
+        boolean isConnect = false;
+        Auth auth = new Auth(token, uuid, isConnect);
         db = FirebaseFirestore.getInstance();
 
         db.collection("qr_code_container")
@@ -77,9 +79,6 @@ public class DatabaseAdapter {
                                                         callback.onCallbackError(new Exception(), "Patient does not exist");
                                                 }
                                             });
-                                    db.collection("qr_code_container")
-                                            .document(token)
-                                            .delete();
 
                                 }
                             }
@@ -94,5 +93,28 @@ public class DatabaseAdapter {
                 i.getAndIncrement();
             }
         }).start();
+    }
+    public void deleteUUIDToken(String token){
+        db = FirebaseFirestore.getInstance();
+        db.collection("qr_code_container")
+                .document(token)
+                .delete();
+    }
+
+    public interface OnIsConnectedCallback {
+        void onCallback(boolean isConnected);
+    }
+    public void checkIsConnected(String token, OnIsConnectedCallback callback) {
+        AtomicBoolean isConnected = new AtomicBoolean(true);
+        db = FirebaseFirestore.getInstance();
+        db.collection("qr_code_container")
+                .document(token)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        callback.onCallback((boolean) documentSnapshot.get("isConnect"));
+                        Log.d("DB: isConnect", String.valueOf(documentSnapshot.get("isConnect")));
+                    }
+                });
     }
 }

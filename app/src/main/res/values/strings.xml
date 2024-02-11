@@ -3,5 +3,5 @@
     <string name="welcome_message">Welcome to AsilApp Container!</string>
     <string name="welcome_message_explain">You can scan the QR code to access the container, via AsilApp</string>
     <string name="generate_qr">Generate QR Code</string>
-
+    <string name="interrupt_session">Interrupted Session</string>
 </resources>

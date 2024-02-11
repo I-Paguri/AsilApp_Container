@@ -4,9 +4,20 @@ public class Auth {
     private String tokenQr;
     private String UUID;
 
-    public Auth(String tokenQr, String email) {
+    private boolean isConnect;
+
+    public Auth(String tokenQr, String email, boolean isConnect) {
         this.tokenQr = tokenQr;
         this.UUID = email;
+        this.isConnect = isConnect;
+    }
+
+    public boolean isConnect() {
+        return isConnect;
+    }
+
+    public void setConnect(boolean isConnect) {
+        this.isConnect = isConnect;
     }
 
     public String getTokenQr() {

@@ -67,6 +67,7 @@ public class QRCodeAuth extends Fragment {
                     public void onCallback(Patient patient) {
                         Intent intent = new Intent(getContext(), SensorActivity.class);
                         intent.putExtra("loggedPatient", (Parcelable) patient);
+                        intent.putExtra("token", uuid.toString());
                         startActivity(intent);
                     }
 
