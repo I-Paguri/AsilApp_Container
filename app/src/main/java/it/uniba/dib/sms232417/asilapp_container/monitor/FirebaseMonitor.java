@@ -32,6 +32,7 @@ public class FirebaseMonitor extends Thread {
                 public void onCallback(boolean isConnect) {
                     Log.d("Firebase Monitor: isConnect", String.valueOf(isConnect));
                     if (!isConnect) {
+                        dbAdapter.deleteUUIDToken(token);
                         FirebaseMonitor.this.isConnect = false;
                         Toast.makeText(context, R.string.interrupt_session, Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(context, MainActivity.class);
