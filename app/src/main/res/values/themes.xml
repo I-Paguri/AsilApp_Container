@@ -63,11 +63,6 @@
         <item name="android:textColor">@color/seed</item>
     </style>
 
-    <style name="CardViewTitleText">
-        <item name="android:fontFamily">@font/ember_bold</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/seed</item>
-    </style>
 
     <!-- Style for regular text -->
     <style name="RegularText">
@@ -75,4 +70,43 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/seed</item>
     </style>
+
+    <style name="CardViewTitleText">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <style name="CardViewTitleText2">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <style name="CardViewSubtitleText">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+
+    <style name="CardViewSubtitleText2">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <style name="CardViewSubtitleText3">
+        <item name="android:fontFamily">@font/ember_display</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/md_theme_light_tertiary</item>
+    </style>
+
+
+    <style name="CardViewDates">
+        <item name="android:fontFamily">@font/ember_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/md_theme_light_onSurfaceVariant</item>
+    </style>
+
 </resources>

@@ -4,4 +4,15 @@
     <string name="welcome_message_explain">You can scan the QR code to access the container, via AsilApp</string>
     <string name="generate_qr">Generate QR Code</string>
     <string name="interrupt_session">Interrupted Session</string>
+
+    <string name="btn_home">Home</string>
+    <string name="btn_my_account">Account</string>
+    <string name="btn_add">Measure</string>
+    <string name="welcome">Welcome</string>
+
+    <string name="my_measures">My Measures</string>
+    <string name="how_to_measure">How to Measure</string>
+    <string name="how_to_measure_explain">Here you will find a short tutorial on how to take a measurement</string>
+
+    <string name="my_account"> My Account </string>
 </resources>

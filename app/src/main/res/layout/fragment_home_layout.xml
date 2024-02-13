@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            style="@style/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+
+        <TextView
+            android:id="@+id/txtUser_Name"
+            style="@style/SubtitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"/>
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardViewMeasures"
+            android:clickable="true"
+            android:focusable="true"
+            android:checkable="true"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/measure_illustration"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/my_measures"
+                    android:layout_gravity="center_horizontal"/>
+
+
+                <TextView
+                    style="@style/CardViewTitleText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/my_measures" />
+
+                <TextView
+                    style="@style/RegularText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_measures"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="@dimen/text_margin"
+                    android:layout_marginRight="@dimen/text_margin"
+                    android:layout_marginBottom="@dimen/text_margin"/>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/howToMeasure"
+            android:clickable="true"
+            android:focusable="true"
+            android:checkable="true"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/tutorial_illustration"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
+                    android:contentDescription="howToMeasure" />
+
+
+                <TextView
+                    style="@style/CardViewTitleText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/how_to_measure" />
+
+                <TextView
+                    style="@style/RegularText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/how_to_measure_explain"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="@dimen/text_margin"
+                    android:layout_marginRight="@dimen/text_margin"
+                    android:layout_marginBottom="@dimen/text_margin"/>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
