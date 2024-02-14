@@ -11,8 +11,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 
 import it.uniba.dib.sms232417.asilapp_container.thread_connection.InternetCheckThread;
 import it.uniba.dib.sms232417.asilapp_container.welcome_fragment.QRCodeAuth;
@@ -29,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
         handler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
+                RelativeLayout relativeLayout = findViewById(R.id.noConnectionLayout);
                 if (msg.what == 0) {
                     showNoInternetDialog();
+                }else if(msg.what == 1){
+                    deleteMsgError();
                 }
                 return true;
             }
@@ -41,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new QRCodeAuth());
 
     }
+
+
+
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -61,14 +72,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    
     private void showNoInternetDialog() {
+        showMsgError();
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
-        builder.setTitle("No Internet Connection");
-        builder.setMessage("Please check your internet connection and try again");
-        builder.setPositiveButton("OK", (dialog, which) -> {
+        builder.setTitle(R.string.no_connection_title);
+        builder.setMessage(R.string.no_connection_explain);
+        builder.setPositiveButton(R.string.no_connection_button, (dialog, which) -> {
             startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
         });
+        builder.setNegativeButton(R.string.no_connection_button_cancel, (dialog, which) -> {
+            dialog.dismiss();
+        });
         builder.show();
+    }
+
+    private void deleteMsgError() {
+        RelativeLayout relativeLayout = findViewById(R.id.noConnectionLayout);
+        relativeLayout.setVisibility(RelativeLayout.GONE);
+    }
+    private void showMsgError() {
+        RelativeLayout relativeLayout = findViewById(R.id.noConnectionLayout);
+        TextView textView = findViewById(R.id.noConnectionEditText);
+        textView.setText(R.string.no_connection);
+        relativeLayout.setVisibility(RelativeLayout.VISIBLE);
     }
 }
 

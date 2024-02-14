@@ -5,6 +5,12 @@
     <string name="generate_qr">Generate QR Code</string>
     <string name="interrupt_session">Interrupted Session</string>
 
+    <string name="no_connection">Please connect to a network...</string>
+    <string name="no_connection_title">No Internet Connection</string>
+    <string name="no_connection_explain">Please check your internet connection and try again</string>
+    <string name="no_connection_button">Retry</string>
+    <string name="no_connection_button_cancel">Cancel</string>
+
     <string name="btn_home">Home</string>
     <string name="btn_my_account">Account</string>
     <string name="btn_add">Measure</string>
