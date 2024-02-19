@@ -52,15 +52,28 @@ public class SensorActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }else {
-            Log.d("Patient", "Patient logged: " + "null");
+            Log.d("Utente test", "onCreate: Utente di test");
+            Patient patient1 = new Patient("4gKBptN3k6SF5FbqWfL0oQ6vXI52", "Sergio","Pinto","sergiopinto2501@gmail.com","25 Sep 2001", "Italy");
+            try {
+
+                Log.d("File", "Creazione file");
+                FileOutputStream fos = openFileOutput(StringUtils.PATIENT_LOGGED, Context.MODE_PRIVATE);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(patient1);
+                Log.d("Patient", "Patient logged: " + patient1.toString());
+            } catch(IOException e){
+                e.printStackTrace();
+            }
         }
 
         replaceFragment(new HomeFragment());
 
         //Avvio Thread per controllo connessione
+        /*
         FirebaseMonitor monitor = new FirebaseMonitor(token,this);
         monitor.start();
 
+         */
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.getMenu().clear();
         bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu_patient);

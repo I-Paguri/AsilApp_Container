@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    
+
     private void showNoInternetDialog() {
         showMsgError();
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
