@@ -79,7 +79,7 @@ public class BloodPressureFragment extends Fragment {
         }while(systolic < diastolic);
         //La tua pressione è di sistolica/diastolica
         boolean esito = false;
-        String message = getResources().getString(R.string.blood_pressure_explain) +" " + systolic + " / " + diastolic + " mmHg";
+        String message = getResources().getString(R.string.blood_pressure_value_explain) +" " + systolic + " / " + diastolic + " mmHg";
 
         if(systolic < 90 && diastolic < 60){
             esito = true;

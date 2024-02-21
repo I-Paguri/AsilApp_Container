@@ -75,7 +75,7 @@ public class GlycemiaFragment extends Fragment {
         boolean esito = false;
 
 
-        String message  = getResources().getString(R.string.glycemia_explain) + " " + glycemia + " mg/dL";
+        String message  = getResources().getString(R.string.glycemia_value_explain) + " " + glycemia + " mg/dL";
         if(glycemia < 70.0){
             message += "\n" + getResources().getString(R.string.low_glycemia);
             esito = true;
