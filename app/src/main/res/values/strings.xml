@@ -62,7 +62,15 @@
     <string name="high_blood_pressure_grave">Your blood pressure is high, you may have severe hypertension. Consult a doctor.</string>
     <string name="normal_blood_pressure">Your blood pressure is normal</string>
     <string name="low_blood_pressure">Your blood pressure is too low, you may have hypotension. Consult a doctor.</string>
-
+    <!-- Glycemia -->
+    <string name="glycemia_title">Detect your glycemia</string>
+    <string name="glycemia_explain">Here you can measure your glycemia</string>
+    <string name="measure_glycemia">Measure Glycemia</string>
+    <string name="glycemia_value_explain">Your glycemia is </string>
+    <string name="high_glycemia">Your glycemia is high, you may have Diabetes mellitus. Consult a doctor.</string>
+    <string name="normal_glycemia">Your glycemia is normal</string>
+    <string name="low_glycemia">Your glycemia is too low, you may have hypoglycemia. Consult a doctor.</string>
+    <string name="pre_diabetes">Your glycemia is high, you may have pre-diabetes. Consult a doctor.</string>
 
 
     <string name="records_value">Records Value</string>

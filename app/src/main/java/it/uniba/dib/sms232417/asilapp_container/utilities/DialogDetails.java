@@ -21,6 +21,7 @@ import java.io.ObjectInputStream;
 import it.uniba.dib.sms232417.asilapp_container.R;
 import it.uniba.dib.sms232417.asilapp_container.adapter.DatabaseAdapter;
 import it.uniba.dib.sms232417.asilapp_container.entity.BloodPressure;
+import it.uniba.dib.sms232417.asilapp_container.entity.Glycemia;
 import it.uniba.dib.sms232417.asilapp_container.entity.HeartRate;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
 import it.uniba.dib.sms232417.asilapp_container.entity.Temperature;
@@ -84,6 +85,10 @@ public class DialogDetails extends DialogFragment {
                     Log.d("BloodPressure", "is instance of BloodPressure");
                     BloodPressure bloodPressure = (BloodPressure) o;
                     dbAdapter.recordsValue(loggedPatient, bloodPressure);
+                }else if(o instanceof Glycemia){
+                    Log.d("Glycemia", "is instance of Glycemia");
+                    Glycemia glycemia = (Glycemia) o;
+                    dbAdapter.recordsValue(loggedPatient, glycemia);
                 }
                 Toast.makeText(context, R.string.value_added_explain, Toast.LENGTH_SHORT).show();
             }
