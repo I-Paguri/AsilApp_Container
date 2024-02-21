@@ -41,7 +41,7 @@ public class HeartBeatFragment extends Fragment implements SensorEventListener{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        return inflater.inflate(R.layout.fragment_heart_beat_layout, container, false);
+        return inflater.inflate(R.layout.fragment_heart_rate_layout, container, false);
     }
 
     @Override

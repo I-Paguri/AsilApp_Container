@@ -2,17 +2,17 @@ package it.uniba.dib.sms232417.asilapp_container.adapter;
 
 import android.util.Log;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import it.uniba.dib.sms232417.asilapp_container.entity.Auth;
 import it.uniba.dib.sms232417.asilapp_container.entity.HeartRate;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
+import it.uniba.dib.sms232417.asilapp_container.entity.Temperature;
 import it.uniba.dib.sms232417.asilapp_container.interfaces.OnGetNumberOfRecordCallbackInterface;
 import it.uniba.dib.sms232417.asilapp_container.interfaces.OnPatientCallbackInterface;
 
@@ -122,20 +122,18 @@ public class DatabaseAdapter {
     public void recordsValue(Patient patient, Object o){
 
         if(o instanceof HeartRate){
-            getNumeberOfRecordsHeart_rate(patient,"heart_rate", new OnGetNumberOfRecordCallbackInterface() {
+
+            getNumeberOfRecords(patient,"heart_rate", new OnGetNumberOfRecordCallbackInterface() {
                 @Override
                 public void onCallback(int value) {
                     value++;
                     db = FirebaseFirestore.getInstance();
-                    String collection_type = "";
-                    String document_data = "";
+                    String collection_type = "heart_rate";
 
-                    if(o instanceof HeartRate){
-                        collection_type = "heart_rate";
-                        HeartRate heartRate = (HeartRate) o;
-                        document_data = heartRate.getDate();
-                        Log.d("HeartRateData", "Data: " + document_data);
-                    }
+                    HeartRate heartRate = (HeartRate) o;
+                    String document_data = heartRate.getDate();
+                    Log.d("HeartRateData", "Data: " + document_data);
+
 
                     db.collection("patient")
                             .document(patient.getUUID())
@@ -145,13 +143,32 @@ public class DatabaseAdapter {
                     Log.d("DB: recordsValue", "Record added to database");
                 }
             });
+        }else if(o instanceof Temperature){
+            getNumeberOfRecords(patient,"temperature", new OnGetNumberOfRecordCallbackInterface() {
+                @Override
+                public void onCallback(int value) {
+                    value++;
+                    db = FirebaseFirestore.getInstance();
+                    String collection_type = "temperature";
+
+                    Temperature temperature = (Temperature) o;
+                    String document_data = temperature.getDate();
+                    Log.d("TemperatureData", "Data: " + document_data);
+                    db.collection("patient")
+                            .document(patient.getUUID())
+                            .collection(collection_type)
+                            .document(collection_type + "_" + value)
+                            .set(o);
+                    Log.d("DB: recordsValue", "Record added to database");
+                }
+            });
+
         }
 
 
-
-
+        
     }
-    public void getNumeberOfRecordsHeart_rate(Patient patient, String collection_type, OnGetNumberOfRecordCallbackInterface callback){
+    public void getNumeberOfRecords(Patient patient, String collection_type, OnGetNumberOfRecordCallbackInterface callback){
 
 
         db = FirebaseFirestore.getInstance();
@@ -167,5 +184,25 @@ public class DatabaseAdapter {
 
 
 
+    }
+    public void recordHeartRate(Patient patient, Object o){
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("patient")
+                .document(patient.getUUID())
+                .collection("heart_rate")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    ArrayList<HeartRate> heartRates = new ArrayList<>();
+                    for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
+                        HeartRate hr = queryDocumentSnapshots.getDocuments().get(i).toObject(HeartRate.class);
+                        heartRates.add(hr);
+                    }
+                    Log.d("DB: recordHeartRate", "Number of records: " + queryDocumentSnapshots.size());
+                    Log.d("DB arrayRecuperati", "Array recuperati: " + heartRates.toString());
+                    for (int i = 0; i < heartRates.size(); i++) {
+                        Log.d("DB arrayRecuperati", "Array recuperati: " + "Valore: " + heartRates.get(i).getValue() + " Date: " + heartRates.get(i).getDate());
+                    }
+                });
     }
 }

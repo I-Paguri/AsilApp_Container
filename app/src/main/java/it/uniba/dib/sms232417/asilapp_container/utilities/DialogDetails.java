@@ -22,6 +22,7 @@ import it.uniba.dib.sms232417.asilapp_container.R;
 import it.uniba.dib.sms232417.asilapp_container.adapter.DatabaseAdapter;
 import it.uniba.dib.sms232417.asilapp_container.entity.HeartRate;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
+import it.uniba.dib.sms232417.asilapp_container.entity.Temperature;
 
 public class DialogDetails extends DialogFragment {
 
@@ -67,15 +68,19 @@ public class DialogDetails extends DialogFragment {
                     throw new RuntimeException(e);
                 }
 
-
+                dbAdapter = new DatabaseAdapter();
                 if (o instanceof HeartRate) {
                     Log.d("HeartRate", "is instance of HearRate");
                     HeartRate heartRate = (HeartRate) o;
-                    dbAdapter = new DatabaseAdapter();
                     dbAdapter.recordsValue(loggedPatient, heartRate);
-                    Toast.makeText(this.context, R.string.value_added_explain, Toast.LENGTH_SHORT).show();
-                }
 
+                }else if(o instanceof Temperature){
+                    Log.d("Temperature", "is instance of Temperature");
+                    Temperature temperature = (Temperature) o;
+                    dbAdapter.recordsValue(loggedPatient, temperature);
+
+                }
+                Toast.makeText(context, R.string.value_added_explain, Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton(R.string.close, (dialog, which) -> {

@@ -18,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="@string/Heartbeat_rate"
+            android:layout_marginLeft="20dp"
+            android:text="@string/temperature_title"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/measure_text"
             android:layout_marginLeft="10dp"
-            android:text="@string/Heartbeat_rate_explain" />
+            android:text="@string/temperature_explain" />
 
         <TextView
             android:id="@+id/measure_explain_text_2"
@@ -47,7 +48,7 @@
             android:layout_below="@+id/measure_explain_text_2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="@string/Measure_Heartbeat" />
+            android:text="@string/temperature" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/measure_loading_layout"
@@ -71,30 +72,20 @@
                 android:layout_centerVertical="true">
 
                 <ImageView
-                    android:id="@+id/heart_image"
+                    android:id="@+id/thermo_image"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/coraz_n" />
+                    android:layout_marginTop="20dp"/>
 
-                <TextView
-                    android:id="@+id/heart_rate"
-                    style="@style/TitleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="55dp"
-                    android:textColor="@color/beige"/>
 
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/heart_rate"
+                    android:layout_below="@+id/thermo_image"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="40dp"
                     android:layout_marginRight="10dp" />
                 <TextView
                     android:layout_marginLeft="10dp"

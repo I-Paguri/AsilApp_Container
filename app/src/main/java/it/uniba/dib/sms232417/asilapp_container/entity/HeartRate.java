@@ -12,6 +12,11 @@ public class HeartRate {
        this.value = value;
 
     }
+    //Per recupero dal DB
+    public HeartRate(int value, String date) {
+        this.value = value;
+        this.date = date;
+    }
 
     public HeartRate() {
     }
