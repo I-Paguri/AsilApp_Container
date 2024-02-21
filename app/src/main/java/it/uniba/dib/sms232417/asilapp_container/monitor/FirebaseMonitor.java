@@ -25,7 +25,7 @@ public class FirebaseMonitor extends Thread {
     public FirebaseMonitor(String token, Context context) {
         this.token = token;
         this.context = context;
-        dbAdapter = new DatabaseAdapter(context);
+        dbAdapter = new DatabaseAdapter();
     }
 
     @Override

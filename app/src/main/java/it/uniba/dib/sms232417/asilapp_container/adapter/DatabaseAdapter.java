@@ -1,29 +1,30 @@
 package it.uniba.dib.sms232417.asilapp_container.adapter;
 
-import android.content.Context;
 import android.util.Log;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import it.uniba.dib.sms232417.asilapp_container.entity.Auth;
+import it.uniba.dib.sms232417.asilapp_container.entity.HeartRate;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
+import it.uniba.dib.sms232417.asilapp_container.interfaces.OnGetNumberOfRecordCallbackInterface;
 import it.uniba.dib.sms232417.asilapp_container.interfaces.OnPatientCallbackInterface;
 
 public class DatabaseAdapter {
-    Context context;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
     boolean credential = false;
 
 
-    public DatabaseAdapter(Context context) {
+    public DatabaseAdapter() {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        this.context = context;
     }
     public void uploadUUIDToken(String token, OnPatientCallbackInterface callback){
         String uuid = "";
@@ -116,5 +117,55 @@ public class DatabaseAdapter {
                         Log.d("DB: isConnect", String.valueOf(documentSnapshot.get("isConnect")));
                     }
                 });
+    }
+
+    public void recordsValue(Patient patient, Object o){
+
+        if(o instanceof HeartRate){
+            getNumeberOfRecordsHeart_rate(patient,"heart_rate", new OnGetNumberOfRecordCallbackInterface() {
+                @Override
+                public void onCallback(int value) {
+                    value++;
+                    db = FirebaseFirestore.getInstance();
+                    String collection_type = "";
+                    String document_data = "";
+
+                    if(o instanceof HeartRate){
+                        collection_type = "heart_rate";
+                        HeartRate heartRate = (HeartRate) o;
+                        document_data = heartRate.getDate();
+                        Log.d("HeartRateData", "Data: " + document_data);
+                    }
+
+                    db.collection("patient")
+                            .document(patient.getUUID())
+                            .collection(collection_type)
+                            .document(collection_type + "_" + value)
+                            .set(o);
+                    Log.d("DB: recordsValue", "Record added to database");
+                }
+            });
+        }
+
+
+
+
+    }
+    public void getNumeberOfRecordsHeart_rate(Patient patient, String collection_type, OnGetNumberOfRecordCallbackInterface callback){
+
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("patient")
+                .document(patient.getUUID())
+                .collection(collection_type)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                            callback.onCallback(queryDocumentSnapshots.size());
+                            Log.d("DB: DB", "Number of records: " + queryDocumentSnapshots.size());
+                });
+
+
+
+
     }
 }

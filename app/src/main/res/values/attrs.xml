@@ -20,4 +20,7 @@
     <attr name="colorPastel_brownContainer" format="color" />
     <attr name="colorOnPastel_brownContainer" format="color" />
     <attr name="harmonizePastel_brown" format="boolean" />
+    <declare-styleable name="HeartProgressBar">
+        <attr name="heartColor" format="color" />
+    </declare-styleable>
 </resources>

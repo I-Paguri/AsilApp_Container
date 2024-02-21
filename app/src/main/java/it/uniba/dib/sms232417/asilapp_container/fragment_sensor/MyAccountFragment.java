@@ -79,7 +79,7 @@ public class MyAccountFragment extends Fragment {
         loggedPatient = checkPatientLogged();
 
         // Inizializza dbAdapterPatient e dbAdapterDoctor
-        dbAdapterPatient = new DatabaseAdapter(getContext());
+        dbAdapterPatient = new DatabaseAdapter();
 
 
         bottomNavigationView = requireActivity().findViewById(R.id.nav_view);

@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,11 +27,13 @@ import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.HomeFragment;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MeasureFragment;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MyAccountFragment;
+import it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.heartbeat.HeartBeatFragment;
 import it.uniba.dib.sms232417.asilapp_container.monitor.FirebaseMonitor;
 import it.uniba.dib.sms232417.asilapp_container.utilities.StringUtils;
 
 public class SensorActivity extends AppCompatActivity {
 
+    private boolean doubleBackToExitPressedOnce = false;
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -101,5 +105,55 @@ public class SensorActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
+
+        if (currentFragment instanceof MeasureFragment || currentFragment instanceof MyAccountFragment){
+            // If the current fragment is HealthcareFragment, MyPatientsFragment, or MyAccountFragment, navigate to HomeFragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.nav_host_fragment_activity_main, new HomeFragment());
+            transaction.addToBackStack(null);
+            transaction.commit();
+            bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+        } else {
+            if (currentFragment instanceof HeartBeatFragment) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.nav_host_fragment_activity_main, new MeasureFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }else {
+                if (currentFragment instanceof HomeFragment) {
+                    if (doubleBackToExitPressedOnce) {
+                        finish();
+                        return;
+                    }
+
+                    this.doubleBackToExitPressedOnce = true;
+                    Toast.makeText(this, getResources().getString(R.string.press_back_again), Toast.LENGTH_SHORT).show();
+                    new Handler().postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            doubleBackToExitPressedOnce = false;
+                        }
+                    }, 2000);
+                } else {
+                    if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                        getSupportFragmentManager().popBackStack();
+                    } else {
+                        super.onBackPressed();
+                    }
+                }
+            }
+        }
+    }
+    public static Context getContext(){
+        return getContext();
     }
 }

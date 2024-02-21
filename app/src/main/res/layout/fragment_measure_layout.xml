@@ -146,7 +146,7 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardViewBloodGlucose"
+            android:id="@+id/cardViewGlycemia"
             android:layout_width="170dp"
             android:layout_height="200dp"
             android:layout_marginLeft="10dp"

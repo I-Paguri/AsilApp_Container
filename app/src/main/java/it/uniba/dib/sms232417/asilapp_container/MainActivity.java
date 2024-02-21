@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -25,6 +26,7 @@ import it.uniba.dib.sms232417.asilapp_container.welcome_fragment.QRCodeAuth;
 public class MainActivity extends AppCompatActivity {
 
     private Handler handler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,5 +100,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(R.string.no_connection);
         relativeLayout.setVisibility(RelativeLayout.VISIBLE);
     }
+
+
 }
 

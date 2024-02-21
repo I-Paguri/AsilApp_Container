@@ -61,7 +61,7 @@ public class QRCodeAuth extends Fragment {
                 qrCode.setVisibility(View.VISIBLE);
                 btnQrCode.setVisibility(View.GONE);
 
-                dbAdapter = new DatabaseAdapter(getContext());
+                dbAdapter = new DatabaseAdapter();
                 dbAdapter.uploadUUIDToken(uuid.toString(), new OnPatientCallbackInterface() {
                     @Override
                     public void onCallback(Patient patient) {

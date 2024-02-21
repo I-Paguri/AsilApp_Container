@@ -7,9 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,10 +25,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import it.uniba.dib.sms232417.asilapp_container.R;
+import it.uniba.dib.sms232417.asilapp_container.SensorActivity;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
 import it.uniba.dib.sms232417.asilapp_container.utilities.StringUtils;
 
 public class HomeFragment extends Fragment {
+
+    private Toolbar toolbar;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,6 +44,26 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d("HomeFragment", "onViewCreated: " + "HomeFragment");
+
+
+
+        toolbar = requireActivity().findViewById(R.id.toolbar);
+
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        // Show home button
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+
+        BadgeDrawable badgeDrawable = BadgeDrawable.create(requireContext());
+        badgeDrawable.setNumber(10);
+
+
+        // Set toolbar title
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.btn_home));
+        // Change toolbar title text color
+        toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
+
+
         Patient loggedPatient = checkPatientLogged();
         TextView textView = view.findViewById(R.id.txtUser_Name);
         if (loggedPatient != null) {
@@ -41,6 +71,13 @@ public class HomeFragment extends Fragment {
             textView.setText(loggedPatient.getNome());
         }
 
+        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
+
+        MaterialCardView cardView = view.findViewById(R.id.cardViewMeasures);
+        cardView.setOnClickListener(v -> {
+            ((SensorActivity) requireActivity()).replaceFragment(new MeasureFragment());
+            bottomNavigationView.setSelectedItemId(R.id.navigation_measure);
+        });
 
     }
 
