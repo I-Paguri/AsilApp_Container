@@ -61,4 +61,8 @@ public class FirebaseMonitor extends Thread {
             }
         }
     }
+    public void stopThread() {
+        isConnect = false;
+
+    }
 }

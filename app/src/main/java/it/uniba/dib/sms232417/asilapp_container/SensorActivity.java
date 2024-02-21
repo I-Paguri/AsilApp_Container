@@ -3,18 +3,25 @@ package it.uniba.dib.sms232417.asilapp_container;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
@@ -26,6 +33,7 @@ import java.io.ObjectOutputStream;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.HomeFragment;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MeasureFragment;
+
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MyAccountFragment;
 import it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.heartbeat.HeartBeatFragment;
 import it.uniba.dib.sms232417.asilapp_container.monitor.FirebaseMonitor;
@@ -33,6 +41,8 @@ import it.uniba.dib.sms232417.asilapp_container.utilities.StringUtils;
 
 public class SensorActivity extends AppCompatActivity {
 
+    String token;
+    FirebaseMonitor threadFirebaseMonitor;
     private boolean doubleBackToExitPressedOnce = false;
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -41,7 +51,8 @@ public class SensorActivity extends AppCompatActivity {
         setContentView(R.layout.sensor_activity_layout);
         Intent intent = getIntent();
         Patient patient = (Patient) intent.getParcelableExtra("loggedPatient");
-        String token = intent.getStringExtra("token");
+        this.token = intent.getStringExtra("token");
+        updateIconProfileImage();
 
         if(patient != null) {
             Log.d("Arriva il paziente", "onCreate: " + patient.toString());
@@ -73,11 +84,10 @@ public class SensorActivity extends AppCompatActivity {
         replaceFragment(new HomeFragment());
 
         //Avvio Thread per controllo connessione
-        /*
-        FirebaseMonitor monitor = new FirebaseMonitor(token,this);
-        monitor.start();
 
-         */
+        threadFirebaseMonitor = new FirebaseMonitor(token,this);
+        threadFirebaseMonitor.start();
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.getMenu().clear();
         bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu_patient);
@@ -156,4 +166,35 @@ public class SensorActivity extends AppCompatActivity {
     public static Context getContext(){
         return getContext();
     }
+    public FirebaseMonitor getThreadFirebaseMonitor(){
+        return threadFirebaseMonitor;
+    }
+    public void updateIconProfileImage() {
+        File file = new File(StringUtils.IMAGE_ICON);
+        if (file.exists()) {
+            Log.d("File_Image", "File exists");
+            Bitmap bitmap = new BitmapDrawable(getResources(), StringUtils.IMAGE_ICON).getBitmap();
+            Drawable iconImage = new BitmapDrawable(getResources(), bitmap);
+
+            BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
+            Glide.with(this)
+                    .load(iconImage)
+                    .circleCrop()
+                    .into(new CustomTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                            bottomNavigationView.getMenu().findItem(R.id.navigation_my_account).setIcon(resource);
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+                        }
+                    });
+
+            bottomNavigationView.setItemIconTintList(null);
+        }else {
+            Log.d("File_Image", "File not exists");
+        }
+    }
+
 }

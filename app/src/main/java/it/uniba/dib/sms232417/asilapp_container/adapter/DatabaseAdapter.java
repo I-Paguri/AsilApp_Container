@@ -17,6 +17,7 @@ import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
 import it.uniba.dib.sms232417.asilapp_container.entity.Temperature;
 import it.uniba.dib.sms232417.asilapp_container.interfaces.OnGetNumberOfRecordCallbackInterface;
 import it.uniba.dib.sms232417.asilapp_container.interfaces.OnPatientCallbackInterface;
+import it.uniba.dib.sms232417.asilapp_container.interfaces.OnProfileImageCallback;
 
 public class DatabaseAdapter {
     FirebaseAuth mAuth;
@@ -243,6 +244,24 @@ public class DatabaseAdapter {
                     for (int i = 0; i < heartRates.size(); i++) {
                         Log.d("DB arrayRecuperati", "Array recuperati: " + "Valore: " + heartRates.get(i).getValue() + " Date: " + heartRates.get(i).getDate());
                     }
+                });
+    }
+    public void getProfileImage(String userUUID, OnProfileImageCallback callback) {
+        db.collection("patient")
+                .document(userUUID)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+
+                        String profileImageUrl = documentSnapshot.getString("profileImageUrl");
+                        Log.d("MyAccountFragment", "Profile image URL: " + profileImageUrl);
+                        callback.onCallback(profileImageUrl);
+                    } else {
+                        callback.onCallbackError(new Exception("No profile image found for this user."));
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    callback.onCallbackError(e);
                 });
     }
 }
