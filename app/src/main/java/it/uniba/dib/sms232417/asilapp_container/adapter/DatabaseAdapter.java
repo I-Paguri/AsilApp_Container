@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import it.uniba.dib.sms232417.asilapp_container.entity.Auth;
+import it.uniba.dib.sms232417.asilapp_container.entity.BloodPressure;
 import it.uniba.dib.sms232417.asilapp_container.entity.HeartRate;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
 import it.uniba.dib.sms232417.asilapp_container.entity.Temperature;
@@ -163,10 +164,29 @@ public class DatabaseAdapter {
                 }
             });
 
+        }else if(o instanceof BloodPressure){
+            getNumeberOfRecords(patient,"blood_pressure", new OnGetNumberOfRecordCallbackInterface() {
+                @Override
+                public void onCallback(int value) {
+                    value++;
+                    db = FirebaseFirestore.getInstance();
+                    String collection_type = "blood_pressure";
+
+                    BloodPressure bloodPressure = (BloodPressure) o;
+                    String document_data = bloodPressure.getDate();
+                    Log.d("BloodPressureData", "Data: " + document_data);
+                    db.collection("patient")
+                            .document(patient.getUUID())
+                            .collection(collection_type)
+                            .document(collection_type + "_" + value)
+                            .set(o);
+                    Log.d("DB: recordsValue", "Record added to database");
+                }
+            });
         }
 
 
-        
+
     }
     public void getNumeberOfRecords(Patient patient, String collection_type, OnGetNumberOfRecordCallbackInterface callback){
 

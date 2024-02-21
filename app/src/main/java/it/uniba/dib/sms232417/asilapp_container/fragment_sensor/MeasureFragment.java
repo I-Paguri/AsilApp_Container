@@ -20,6 +20,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import it.uniba.dib.sms232417.asilapp_container.R;
 import it.uniba.dib.sms232417.asilapp_container.SensorActivity;
+import it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.blood_pressure.BloodPressureFragment;
 import it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.heartbeat.HeartBeatFragment;
 import it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.temperature.TemperatureFragment;
 
@@ -94,6 +95,13 @@ public class MeasureFragment extends Fragment {
                 ((SensorActivity) getActivity()).replaceFragment(new TemperatureFragment());
             }
         });
+        cardViewPressure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((SensorActivity) getActivity()).replaceFragment(new BloodPressureFragment());
+            }
+        });
+
 
     }
 
