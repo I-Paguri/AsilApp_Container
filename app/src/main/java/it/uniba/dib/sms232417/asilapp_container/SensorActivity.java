@@ -83,7 +83,6 @@ public class SensorActivity extends AppCompatActivity {
 
         replaceFragment(new HomeFragment());
 
-        //Avvio Thread per controllo connessione
 
         threadFirebaseMonitor = new FirebaseMonitor(token,this);
         threadFirebaseMonitor.start();

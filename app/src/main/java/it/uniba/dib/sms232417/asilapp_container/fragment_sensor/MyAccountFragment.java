@@ -48,13 +48,16 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import it.uniba.dib.sms232417.asilapp_container.MainActivity;
 import it.uniba.dib.sms232417.asilapp_container.R;
 import it.uniba.dib.sms232417.asilapp_container.SensorActivity;
 import it.uniba.dib.sms232417.asilapp_container.adapter.DatabaseAdapter;
+import it.uniba.dib.sms232417.asilapp_container.entity.HeartRate;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.HomeFragment;
+import it.uniba.dib.sms232417.asilapp_container.interfaces.OnGetValueFromDBInterface;
 import it.uniba.dib.sms232417.asilapp_container.interfaces.OnProfileImageCallback;
 import it.uniba.dib.sms232417.asilapp_container.monitor.FirebaseMonitor;
 import it.uniba.dib.sms232417.asilapp_container.utilities.StringUtils;
@@ -142,6 +145,35 @@ public class MyAccountFragment extends Fragment {
         ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.my_account));
         // Change toolbar title text color
         toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
+
+
+
+        // PER MARCO - Prova recupero dati dal DB
+        /*
+        Button btnProvaRecupero = getView().findViewById(R.id.btnProvaRecupero);
+        btnProvaRecupero.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                dbAdapter.takeValueFromDB(loggedPatient, "heart_rate", new OnGetValueFromDBInterface() {
+                    @Override
+                    public void onCallback(ArrayList<?> listOfValue) {
+                        for (int i = 0; i < listOfValue.size(); i++) {
+                            if(listOfValue.get(i) instanceof HeartRate) {
+                                HeartRate heartRate = (HeartRate) listOfValue.get(i);
+                                Log.d("MyAccountFragment", "Heart rate: " + heartRate.toString());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCallbackError(Exception exception, String message) {
+                        OnGetValueFromDBInterface.super.onCallbackError(exception, message);
+                    }
+                });
+            }
+        });
+        */
 
         // Set navigation click listener
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

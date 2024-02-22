@@ -188,8 +188,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="Log out" />
-        
-        </LinearLayout> 
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/not_logged_user"

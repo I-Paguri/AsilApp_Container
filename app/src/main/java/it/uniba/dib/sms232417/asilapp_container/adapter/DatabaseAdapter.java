@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.MemoryLruGcSettings;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -16,8 +17,10 @@ import it.uniba.dib.sms232417.asilapp_container.entity.HeartRate;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
 import it.uniba.dib.sms232417.asilapp_container.entity.Temperature;
 import it.uniba.dib.sms232417.asilapp_container.interfaces.OnGetNumberOfRecordCallbackInterface;
+import it.uniba.dib.sms232417.asilapp_container.interfaces.OnGetValueFromDBInterface;
 import it.uniba.dib.sms232417.asilapp_container.interfaces.OnPatientCallbackInterface;
 import it.uniba.dib.sms232417.asilapp_container.interfaces.OnProfileImageCallback;
+
 
 public class DatabaseAdapter {
     FirebaseAuth mAuth;
@@ -226,26 +229,55 @@ public class DatabaseAdapter {
 
 
     }
-    public void recordHeartRate(Patient patient, Object o){
-
+    /*
+    PER MARCO RECUPERO DATI DAL DB
+    public void takeValueFromDB(Patient patient, String collection_type, OnGetValueFromDBInterface callback){
         db = FirebaseFirestore.getInstance();
+
         db.collection("patient")
                 .document(patient.getUUID())
-                .collection("heart_rate")
+                .collection(collection_type)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    ArrayList<HeartRate> heartRates = new ArrayList<>();
-                    for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
-                        HeartRate hr = queryDocumentSnapshots.getDocuments().get(i).toObject(HeartRate.class);
-                        heartRates.add(hr);
+
+                    if(collection_type.equals("heart_rate")) {
+                        ArrayList<HeartRate> heartRates = new ArrayList<>();
+                        for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
+                            HeartRate hr = queryDocumentSnapshots.getDocuments().get(i).toObject(HeartRate.class);
+                            heartRates.add(hr);
+                            callback.onCallback(heartRates);
+                        }
+                    }else if(collection_type.equals("temperature")) {
+                        ArrayList<Temperature> temperatures = new ArrayList<>();
+                        for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
+                            Temperature t = queryDocumentSnapshots.getDocuments().get(i).toObject(Temperature.class);
+                            temperatures.add(t);
+                            callback.onCallback(temperatures);
+
+                        }
+                    }else if(collection_type.equals("blood_pressure")) {
+                        ArrayList<BloodPressure> bloodPressures = new ArrayList<>();
+                        for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
+                            BloodPressure bp = queryDocumentSnapshots.getDocuments().get(i).toObject(BloodPressure.class);
+                            bloodPressures.add(bp);
+                            callback.onCallback(bloodPressures);
+                        }
+                    }else if(collection_type.equals("glycemia")) {
+                        ArrayList<Glycemia> glycemias = new ArrayList<>();
+                        for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
+                            Glycemia g = queryDocumentSnapshots.getDocuments().get(i).toObject(Glycemia.class);
+                            glycemias.add(g);
+                            callback.onCallback(glycemias);
+                        }
                     }
-                    Log.d("DB: recordHeartRate", "Number of records: " + queryDocumentSnapshots.size());
-                    Log.d("DB arrayRecuperati", "Array recuperati: " + heartRates.toString());
-                    for (int i = 0; i < heartRates.size(); i++) {
-                        Log.d("DB arrayRecuperati", "Array recuperati: " + "Valore: " + heartRates.get(i).getValue() + " Date: " + heartRates.get(i).getDate());
-                    }
+
+                })
+                .addOnFailureListener(e -> {
+                    callback.onCallbackError(e, "Error while getting data from database");
                 });
     }
+
+     */
     public void getProfileImage(String userUUID, OnProfileImageCallback callback) {
         db.collection("patient")
                 .document(userUUID)
