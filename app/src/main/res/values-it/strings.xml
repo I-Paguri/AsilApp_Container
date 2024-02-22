@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">AsilApp Container</string>
     <string name="welcome_message">Benvenuto in AsilApp Container!</string>
-    <string name="welcome_message_explain">Puoi scansionare il codice QR per accedere al container, tramite AsilApp</string>.
+    <string name="welcome_message_explain">Scansiona il codice QR per accedere al container</string>.
     <string name="generate_qr">Generare codice QR</string>
     <string name="interrupt_session">Sessione Interrotta</string>.
 
