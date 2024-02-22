@@ -8,35 +8,36 @@
     app:circularflow_radiusInDP="30dp"
     android:padding="20dp"
     android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp"
-    >
+    android:layout_marginLeft="20dp">
 
     <TextView
         android:id="@+id/title_app"
-        style="@style/TitleText"
+        style="@style/CardViewTitleText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_message"
         android:layout_centerHorizontal="true"
         />
+
     <TextView
         android:id="@+id/welcome"
-        style="@style/SubtitleText"
+        style="@style/RegularText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_message_explain"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/title_app"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/welcome_message_explain" />
+
     <ImageView
         android:id="@+id/qrCode"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_below="@+id/welcome"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_gravity="center"
         android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
 
     <Button
         android:layout_marginTop="20dp"
