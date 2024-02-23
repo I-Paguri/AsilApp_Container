@@ -1,7 +1,5 @@
 package it.uniba.dib.sms232417.asilapp_container.interfaces;
 
-import com.bumptech.glide.signature.ObjectKey;
-
 import java.util.ArrayList;
 
 public interface OnGetValueFromDBInterface {
