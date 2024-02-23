@@ -116,12 +116,12 @@ public class BloodPressureFragment extends Fragment {
         int systolic;
         int diastolic;
         do {
-            lowLimit = 90;
+            lowLimit = 70;
             highLimit = 160;
             systolic = lowLimit + random.nextInt(highLimit - lowLimit + 1);
 
             lowLimit = 60;
-            highLimit = 100;
+            highLimit = 130;
             diastolic = lowLimit + random.nextInt(highLimit - lowLimit + 1);
         }while(systolic < diastolic);
         //La tua pressione è di sistolica/diastolica
