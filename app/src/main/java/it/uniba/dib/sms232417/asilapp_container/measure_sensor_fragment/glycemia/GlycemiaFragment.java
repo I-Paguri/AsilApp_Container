@@ -122,15 +122,15 @@ public class GlycemiaFragment extends Fragment {
 
         String message  = getResources().getString(R.string.glycemia_value_explain) + " " + glycemia + " mg/dL";
         if(glycemia < 70.0){
-            message += "\n" + getResources().getString(R.string.low_glycemia);
+            message += "\n\n" + getResources().getString(R.string.low_glycemia);
             esito = true;
         }else if(glycemia >125 && glycemia <= 200){
-            message += "\n" + getResources().getString(R.string.high_glycemia);
+            message += "\n\n" + getResources().getString(R.string.high_glycemia);
             esito = true;
         }else if(glycemia >= 70.0 && glycemia <100) {
-            message += "\n" + getResources().getString(R.string.normal_glycemia);
+            message += "\n\n" + getResources().getString(R.string.normal_glycemia);
         }else if(glycemia >= 100 && glycemia <= 125) {
-            message += "\n" + getResources().getString(R.string.pre_diabetes);
+            message += "\n\n" + getResources().getString(R.string.pre_diabetes);
             esito = true;
         }
         message += "\n\n" + getResources().getString(R.string.question_value);

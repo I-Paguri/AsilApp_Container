@@ -18,6 +18,7 @@
     <string name="welcome">Benvenuto</string>
 
     <string name="my_measures">Le mie misure</string>
+    <string name="my_measures_explain">Qui puoi misurare parametri vitali</string>
     <string name="how_to_measure">Come misurare</string>
     <string name="how_to_measure_explain">Qui troverai un breve tutorial su come effettuare una misurazione</string>.
 

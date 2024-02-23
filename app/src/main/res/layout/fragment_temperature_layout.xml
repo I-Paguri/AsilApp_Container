@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true">
 
@@ -9,47 +9,46 @@
         android:id="@+id/measure_explain_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        tools:ignore="MissingConstraints">
+        android:layout_marginTop="16dp">
 
         <TextView
             android:id="@+id/measure_text"
             style="@style/TitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
             android:text="@string/temperature_title"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/measure_explain_text"
-            style="@style/SubtitleText"
+            style="@style/CardViewSubtitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/measure_text"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
             android:text="@string/temperature_explain" />
 
-        <TextView
-            android:id="@+id/measure_explain_text_2"
-            style="@style/RegularText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/measure_explain_text"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
-            android:text="@string/click_to_measure" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="60dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonMeasure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/measure_explain_text_2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="@string/temperature" />
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/measure_temperature" />
+
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/measure_loading_layout"
         android:layout_width="wrap_content"

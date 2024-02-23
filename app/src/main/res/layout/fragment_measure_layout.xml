@@ -8,7 +8,8 @@
         android:id="@+id/measure_explain_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="16dp">
     <TextView
         android:id="@+id/measure_text"
         style="@style/TitleText"
@@ -16,30 +17,35 @@
         android:layout_height="wrap_content"
         android:text="@string/measure"
         tools:ignore="MissingConstraints"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="20dp" />
     <TextView
         android:id="@+id/measure_explain_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/measure_explain"
-        style="@style/SubtitleText"
+        style="@style/CardViewSubtitleText"
         android:layout_below="@+id/measure_text"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"/>
+
         <TextView
+            style="@style/CardViewSubtitleText3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/RegularText"
             android:layout_below="@+id/measure_explain_text"
-            android:text="@string/select_measure"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/select_measure" />
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/measure_cardview_layout_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/measure_explain_layout"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardViewHearthBeat"
@@ -52,73 +58,35 @@
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            app:strokeWidth="0dp"
             app:cardBackgroundColor="@color/white"
-            app:cardElevation="3dp">
+            app:cardElevation="3dp"
+            app:strokeWidth="0dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/bpm"
-                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_horizontal"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/my_measures"
-                    android:layout_gravity="center_horizontal"/>
-                <TextView
-                    style="@style/CardViewTitleText2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/Heartbeat"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="center_horizontal"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardViewTemperature"
-            android:layout_width="170dp"
-            android:layout_height="200dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:strokeWidth="0dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardElevation="3dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/thermometer"
                     android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/my_measures"
-                    android:layout_gravity="center_horizontal"/>
+                    android:src="@drawable/bpm" />
+
                 <TextView
-                    style="@style/CardViewTitleText2"
+                    style="@style/CardViewTitleText3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/temperature"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_gravity="center_horizontal"/>
+                    android:text="@string/Heartbeat" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/measure_cardview_layout_1"
-        android:layout_centerInParent="true">
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardViewPressure"
             android:layout_width="170dp"
@@ -130,31 +98,84 @@
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            app:strokeWidth="0dp"
             app:cardBackgroundColor="@color/white"
-            app:cardElevation="3dp">
+            app:cardElevation="3dp"
+            app:strokeWidth="0dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/pressione"
-                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_horizontal"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/my_measures"
-                    android:layout_gravity="center_horizontal"/>
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pressione" />
+
                 <TextView
-                    style="@style/CardViewTitleText2"
+                    style="@style/CardViewTitleText3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/blood_pressure"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_gravity="center_horizontal"/>
+                    android:text="@string/blood_pressure" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/measure_cardview_layout_1"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="8dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardViewTemperature"
+            android:layout_width="170dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="3dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/my_measures"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/thermometer" />
+
+                <TextView
+                    style="@style/CardViewTitleText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/temperature" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardViewGlycemia"
             android:layout_width="170dp"
@@ -166,29 +187,32 @@
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            app:strokeWidth="0dp"
             app:cardBackgroundColor="@color/white"
-            app:cardElevation="3dp">
+            app:cardElevation="3dp"
+            app:strokeWidth="0dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/glicemia"
-                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_horizontal"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/my_measures"
-                    android:layout_gravity="center_horizontal"/>
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/glicemia" />
+
                 <TextView
-                    style="@style/CardViewTitleText2"
+                    style="@style/CardViewTitleText3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/blood_glucose"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_gravity="center_horizontal"/>
+                    android:text="@string/blood_glucose" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
