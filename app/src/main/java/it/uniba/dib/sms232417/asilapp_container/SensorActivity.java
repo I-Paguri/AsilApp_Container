@@ -82,9 +82,11 @@ public class SensorActivity extends AppCompatActivity {
         }
 
         replaceFragment(new HomeFragment());
-
+        /*
         threadFirebaseMonitor = new FirebaseMonitor(token,this);
         threadFirebaseMonitor.start();
+
+         */
         
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.getMenu().clear();

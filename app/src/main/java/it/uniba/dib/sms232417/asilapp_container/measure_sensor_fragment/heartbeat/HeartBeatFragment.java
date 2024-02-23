@@ -2,6 +2,8 @@ package it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.heartbe
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,13 +21,19 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import it.uniba.dib.sms232417.asilapp_container.R;
 import it.uniba.dib.sms232417.asilapp_container.entity.HeartRate;
+import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MeasureFragment;
 import it.uniba.dib.sms232417.asilapp_container.utilities.DialogDetails;
 
 public class HeartBeatFragment extends Fragment implements SensorEventListener{
@@ -47,6 +55,42 @@ public class HeartBeatFragment extends Fragment implements SensorEventListener{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view); // Initialize bottomNavigationView
+
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+        // Initialize bottomNavigationView
+
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        // Show home button
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Set home icon as back button
+        Drawable homeIcon = getResources().getDrawable(R.drawable.arrow_back, null);
+        // Set color filter
+        homeIcon.setColorFilter(getResources().getColor(R.color.md_theme_light_surface), PorterDuff.Mode.SRC_ATOP);
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setHomeAsUpIndicator(homeIcon);
+
+        // Set toolbar title
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.heart_rate));
+        // Change toolbar title text color
+        toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
+
+        // Set navigation click listener
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Navigate to HomeFragment
+                bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                MeasureFragment measureFragment = new MeasureFragment(); // Create new instance of HomeFragment
+                transaction.replace(R.id.nav_host_fragment_activity_main, measureFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         mSensorManager = (SensorManager) getActivity().getSystemService(getActivity().SENSOR_SERVICE);
         if (mSensorManager != null) {

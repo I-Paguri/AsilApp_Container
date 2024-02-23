@@ -1,6 +1,8 @@
 package it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.glycemia;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -12,15 +14,21 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.Random;
 
 import it.uniba.dib.sms232417.asilapp_container.R;
 import it.uniba.dib.sms232417.asilapp_container.entity.Glycemia;
+import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MeasureFragment;
 import it.uniba.dib.sms232417.asilapp_container.utilities.DialogDetails;
 
 public class GlycemiaFragment extends Fragment {
@@ -35,6 +43,43 @@ public class GlycemiaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view); // Initialize bottomNavigationView
+
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+        // Initialize bottomNavigationView
+
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        // Show home button
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Set home icon as back button
+        Drawable homeIcon = getResources().getDrawable(R.drawable.arrow_back, null);
+        // Set color filter
+        homeIcon.setColorFilter(getResources().getColor(R.color.md_theme_light_surface), PorterDuff.Mode.SRC_ATOP);
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setHomeAsUpIndicator(homeIcon);
+
+        // Set toolbar title
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.blood_glucose));
+        // Change toolbar title text color
+        toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
+
+        // Set navigation click listener
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Navigate to HomeFragment
+                bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                MeasureFragment measureFragment = new MeasureFragment(); // Create new instance of HomeFragment
+                transaction.replace(R.id.nav_host_fragment_activity_main, measureFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
         MaterialButton btnMeasure = view.findViewById(R.id.buttonMeasure);
         context = getContext();
         btnMeasure.setOnClickListener(new View.OnClickListener() {
