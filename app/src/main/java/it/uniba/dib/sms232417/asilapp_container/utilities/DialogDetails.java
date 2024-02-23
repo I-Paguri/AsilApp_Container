@@ -74,6 +74,7 @@ public class DialogDetails extends DialogFragment {
                 if (o instanceof HeartRate) {
                     Log.d("HeartRate", "is instance of HearRate");
                     HeartRate heartRate = (HeartRate) o;
+
                     dbAdapter.recordsValue(loggedPatient, heartRate);
 
                 }else if(o instanceof Temperature){
@@ -84,10 +85,13 @@ public class DialogDetails extends DialogFragment {
                 }else if(o instanceof BloodPressure){
                     Log.d("BloodPressure", "is instance of BloodPressure");
                     BloodPressure bloodPressure = (BloodPressure) o;
+
                     dbAdapter.recordsValue(loggedPatient, bloodPressure);
                 }else if(o instanceof Glycemia){
                     Log.d("Glycemia", "is instance of Glycemia");
                     Glycemia glycemia = (Glycemia) o;
+                    Log.d("Date", "Glycemia: " + glycemia.getDate());
+                    Log.d("Date String", "Glycemia: " + glycemia.getStringDate());
                     dbAdapter.recordsValue(loggedPatient, glycemia);
                 }
                 Toast.makeText(context, R.string.value_added_explain, Toast.LENGTH_SHORT).show();

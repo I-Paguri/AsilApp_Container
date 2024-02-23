@@ -7,6 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.MemoryLruGcSettings;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -137,7 +138,8 @@ public class DatabaseAdapter {
                     String collection_type = "heart_rate";
 
                     HeartRate heartRate = (HeartRate) o;
-                    String document_data = heartRate.getDate();
+                    Date data_excecution = heartRate.getDate();
+                    String document_data = data_excecution.toString();
                     Log.d("HeartRateData", "Data: " + document_data);
 
 
@@ -158,7 +160,8 @@ public class DatabaseAdapter {
                     String collection_type = "temperature";
 
                     Temperature temperature = (Temperature) o;
-                    String document_data = temperature.getDate();
+                    Date data_excecution = temperature.getDate();
+                    String document_data = data_excecution.toString();
                     Log.d("TemperatureData", "Data: " + document_data);
                     db.collection("patient")
                             .document(patient.getUUID())
@@ -178,7 +181,8 @@ public class DatabaseAdapter {
                     String collection_type = "blood_pressure";
 
                     BloodPressure bloodPressure = (BloodPressure) o;
-                    String document_data = bloodPressure.getDate();
+                    Date data_excecution = bloodPressure.getDate();
+                    String document_data = data_excecution.toString();
                     Log.d("BloodPressureData", "Data: " + document_data);
                     db.collection("patient")
                             .document(patient.getUUID())
@@ -197,7 +201,8 @@ public class DatabaseAdapter {
                     String collection_type = "glycemia";
 
                     Glycemia glycemia = (Glycemia) o;
-                    String document_data = glycemia.getDate();
+                    Date data_excecution = glycemia.getDate();
+                    String document_data = data_excecution.toString();
                     Log.d("GlycemiaData", "Data: " + document_data);
                     db.collection("patient")
                             .document(patient.getUUID())
