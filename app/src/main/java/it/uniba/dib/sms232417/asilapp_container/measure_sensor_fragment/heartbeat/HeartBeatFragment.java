@@ -118,10 +118,18 @@ public class HeartBeatFragment extends Fragment implements SensorEventListener{
            startButton.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
+
+                   // Mostra la ProgressBar e la TextView
+                   ProgressBar progressBar = view.findViewById(R.id.progressBar);
+                   TextView loadingText = view.findViewById(R.id.loading_text);
+
+                   progressBar.setVisibility(View.VISIBLE);
+                   progressBar.setMax(100);
+                   loadingText.setVisibility(View.VISIBLE);
+
                    RelativeLayout relativeLayout = view.findViewById(R.id.measure_loading_layout);
                    relativeLayout.setVisibility(View.VISIBLE);
-                   final ProgressBar progressBar = view.findViewById(R.id.progressBar);
-                   progressBar.setMax(100);
+
                    heartAnimation.start();
                    hearRateAnimation.start();
 
@@ -140,7 +148,9 @@ public class HeartBeatFragment extends Fragment implements SensorEventListener{
                            heartAnimation.end();
                            hearRateAnimation.end();
                            calcuateHeartRateAvarege();
-                           relativeLayout.setVisibility(View.GONE);
+                           // relativeLayout.setVisibility(View.GONE);
+                           progressBar.setVisibility(View.GONE);
+                           loadingText.setVisibility(View.GONE);
                        }
                    }.start();
                }
