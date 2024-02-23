@@ -8,7 +8,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.provider.Settings;
 import android.util.Log;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -37,11 +41,13 @@ import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MeasureFragment;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MyAccountFragment;
 import it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.heartbeat.HeartBeatFragment;
 import it.uniba.dib.sms232417.asilapp_container.monitor.FirebaseMonitor;
+import it.uniba.dib.sms232417.asilapp_container.thread_connection.InternetCheckThread;
 import it.uniba.dib.sms232417.asilapp_container.utilities.StringUtils;
 
 public class SensorActivity extends AppCompatActivity {
 
     String token;
+    Handler handler;
     FirebaseMonitor threadFirebaseMonitor;
     private boolean doubleBackToExitPressedOnce = false;
     @SuppressLint("NonConstantResourceId")
@@ -53,6 +59,24 @@ public class SensorActivity extends AppCompatActivity {
         Patient patient = (Patient) intent.getParcelableExtra("loggedPatient");
         this.token = intent.getStringExtra("token");
         updateIconProfileImage();
+
+        handler = new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(@NonNull Message msg) {
+                RelativeLayout relativeLayout = findViewById(R.id.noConnectionLayout);
+                if (msg.what == 0) {
+                    Toast.makeText(SensorActivity.this, getResources().getString(R.string.no_connection), Toast.LENGTH_SHORT).show();
+                    threadFirebaseMonitor.stopThread();
+                    Intent intent = new Intent(SensorActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                return true;
+            }
+        });
+
+
+        InternetCheckThread internetCheckThread = new InternetCheckThread(getContext(),handler);
+        internetCheckThread.start();
 
         if(patient != null) {
             Log.d("Arriva il paziente", "onCreate: " + patient.toString());
@@ -82,11 +106,10 @@ public class SensorActivity extends AppCompatActivity {
         }
 
         replaceFragment(new HomeFragment());
-        /*
+
         threadFirebaseMonitor = new FirebaseMonitor(token,this);
         threadFirebaseMonitor.start();
 
-         */
         
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.getMenu().clear();
@@ -163,8 +186,8 @@ public class SensorActivity extends AppCompatActivity {
             }
         }
     }
-    public static Context getContext(){
-        return getContext();
+    public Context getContext(){
+        return this;
     }
     public FirebaseMonitor getThreadFirebaseMonitor(){
         return threadFirebaseMonitor;
