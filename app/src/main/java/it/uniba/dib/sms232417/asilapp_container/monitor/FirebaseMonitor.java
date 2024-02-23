@@ -65,4 +65,7 @@ public class FirebaseMonitor extends Thread {
         isConnect = false;
 
     }
+    public void deleteUUIDToken() {
+        dbAdapter.deleteUUIDToken(token);
+    }
 }

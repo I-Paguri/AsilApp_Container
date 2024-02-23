@@ -261,7 +261,7 @@ public class MyAccountFragment extends Fragment {
                 getResources().getString(R.string.logout_successful),
                 Toast.LENGTH_SHORT).show();
         ((SensorActivity) requireActivity()).getThreadFirebaseMonitor().stopThread();
-
+        ((SensorActivity) requireActivity()).getThreadFirebaseMonitor().deleteUUIDToken();
         File file = new File(StringUtils.FILE_PATH_PATIENT_LOGGED);
         if (file.exists()) {
             boolean isDeleted = file.delete();
