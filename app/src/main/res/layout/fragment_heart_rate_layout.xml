@@ -101,10 +101,10 @@
             android:id="@+id/buttonMeasure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/measure_card_view"
             android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:layout_below="@+id/measure_card_view"
             android:text="@string/measure_heartbeat" />
 
     </RelativeLayout>
