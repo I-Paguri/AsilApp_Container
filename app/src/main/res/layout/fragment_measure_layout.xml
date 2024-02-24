@@ -50,7 +50,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardViewHearthBeat"
             android:layout_width="170dp"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -90,7 +90,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardViewPressure"
             android:layout_width="170dp"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
@@ -121,6 +121,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/blood_pressure" />

@@ -28,7 +28,7 @@
 
     <string name="temperature">Temperatura</string>
     <string name="Heartbeat">Battito cardiaco</string>
-    <string name="blood_pressure">Pressione sanguigna</string>
+    <string name="blood_pressure">Pressione arteriosa</string>
     <string name="blood_glucose">Glicemia</string>
 
     <!-- Frequenza cardiaca -->
@@ -51,15 +51,15 @@
     <string name="high_temperature">Hai la febbre, consulta un medico.</string>
     <string name="normal_temperature">La tua temperatura è normale</string>
     <string name="low_temperature">La tua temperatura è troppo bassa, potreste essere a rischio di ipotermia. Consulta un medico.</string>
-    <!-- Pressione sanguigna-->
-    <string name="blood_pressure_title">Rileva la pressione sanguigna</string>.
-    <string name="blood_pressure_explain">Qui è possibile misurare la pressione sanguigna</string>.
+    <!-- Pressione arteriosa-->
+    <string name="blood_pressure_title">Rileva la pressione arteriosa</string>.
+    <string name="blood_pressure_explain">Qui è possibile misurare la pressione arteriosa</string>.
     <string name="measure_blood_pressure">Misura</string>
     <string name="blood_pressure_value_explain">La tua pressione arteriosa è </string>
-    <string name="high_blood_pressure_slight">La tua pressione sanguigna è alta, potrebbe avere una leggera ipertensione. Consulta un medico.</string>
-    <string name="high_blood_pressure_moderate">La tua pressione sanguigna è alta, potreste avere un\'ipertensione moderata. Consulta un medico.</string>
-    <string name="high_blood_pressure_grave">La tua pressione sanguigna è alta, potreste avere un\'ipertensione grave. Consulta un medico.</string>
-    <string name="normal_blood_pressure">La tua pressione sanguigna è normale</string>.
+    <string name="high_blood_pressure_slight">La tua pressione arteriosa è alta, potrebbe avere una leggera ipertensione. Consulta un medico.</string>
+    <string name="high_blood_pressure_moderate">La tua pressione arteriosa è alta, potreste avere un\'ipertensione moderata. Consulta un medico.</string>
+    <string name="high_blood_pressure_grave">La tua pressione arteriosa è alta, potreste avere un\'ipertensione grave. Consulta un medico.</string>
+    <string name="normal_blood_pressure">La tua pressione arteriosa è normale</string>.
     <string name="low_blood_pressure">La pressione arteriosa è troppo bassa, potrebbe trattarsi di ipotensione. Consulta un medico.</string>
     <!-- Glicemia-->
     <string name="glycemia_title">Rileva la glicemia</string>
