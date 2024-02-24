@@ -75,7 +75,7 @@ public class BloodPressureFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Navigate to HomeFragment
-                bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+               // bottomNavigationView.setSelectedItemId(R.id.navigation_home);
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 MeasureFragment measureFragment = new MeasureFragment(); // Create new instance of HomeFragment
