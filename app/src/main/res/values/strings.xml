@@ -33,8 +33,8 @@
     <string name="blood_glucose">Glycemia</string>
 
     <!-- Heart Rate -->
-    <string name="heartbeat_rate">Heartbeat rate</string>
-    <string name="heartbeat_rate_explain">Measure your heart rate here</string>
+    <string name="heartbeat_rate">Heartbeat</string>
+    <string name="heartbeat_rate_explain">Measure your heartbeat here</string>
     <string name="click_to_measure">Click to measure</string>
     <string name="measure_heartbeat">Start measuring</string>
     <string name="loading">Wait please...</string>

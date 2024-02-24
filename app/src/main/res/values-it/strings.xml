@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">AsilApp Container</string>
     <string name="welcome_message">Benvenuto in AsilApp Container!</string>
-    <string name="welcome_message_explain">Scansiona il codice QR per accedere al container</string>.
+    <string name="welcome_message_explain">Scansiona il QR per accedere al container</string>
     <string name="generate_qr">Genera il codice QR</string>
     <string name="interrupt_session">Sessione interrotta</string>.
 
@@ -33,7 +33,7 @@
     <string name="blood_glucose">Glicemia</string>
 
     <!-- Frequenza cardiaca -->
-    <string name="heartbeat_rate">Frequenza del battito cardiaco</string>
+    <string name="heartbeat_rate">Battito cardiaco</string>
     <string name="heartbeat_rate_explain">Qui è possibile misurare la frequenza cardiaca</string>.
     <string name="click_to_measure">Clicca per misurare</string>
     <string name="measure_heartbeat">Misura</string>
@@ -45,7 +45,7 @@
     <string name="tachycardia">La tua frequenza cardiaca è troppo veloce, potreste avere una tachicardia. Consulta un medico.</string>
     <string name="normal_heart_rate">La frequenza cardiaca è normale</string>.
     <!-- Temperatura -->
-    <string name="temperature_title">Rileva la tua temperatura</string>
+    <string name="temperature_title">Temperatura</string>
     <string name="temperature_explain">Qui è possibile misurare la temperatura</string>.
     <string name="measure_temperature">Misura</string>
     <string name="temperature_value_explain">La tua temperatura è </string>
@@ -53,7 +53,7 @@
     <string name="normal_temperature">La tua temperatura è normale</string>
     <string name="low_temperature">La tua temperatura è troppo bassa, potreste essere a rischio di ipotermia. Consulta un medico.</string>
     <!-- Pressione arteriosa-->
-    <string name="blood_pressure_title">Rileva la pressione arteriosa</string>.
+    <string name="blood_pressure_title">Pressione arteriosa</string>.
     <string name="blood_pressure_explain">Qui è possibile misurare la pressione arteriosa</string>.
     <string name="measure_blood_pressure">Misura</string>
     <string name="blood_pressure_value_explain">La tua pressione arteriosa è </string>
@@ -63,7 +63,7 @@
     <string name="normal_blood_pressure">La tua pressione arteriosa è normale</string>.
     <string name="low_blood_pressure">La pressione arteriosa è troppo bassa, potrebbe trattarsi di ipotensione. Consulta un medico.</string>
     <!-- Glicemia-->
-    <string name="glycemia_title">Rileva la glicemia</string>
+    <string name="glycemia_title">Glicemia</string>
     <string name="glycemia_explain">Qui è possibile misurare la glicemia</string>
     <string name="measure_glycemia">Misura</string>
     <string name="glycemia_value_explain">La tua glicemia è </string>
