@@ -18,8 +18,8 @@
 
     <string name="my_measures">Le mie misurazioni</string>
     <string name="my_measures_explain">Qui puoi misurare parametri vitali</string>
-    <string name="how_to_measure">Come misurare</string>
-    <string name="how_to_measure_explain">Qui troverai un breve tutorial su come effettuare una misurazione</string>.
+    <string name="how_to_measure">Come effettuare misurazioni</string>
+    <string name="how_to_measure_explain">Qui troverai video tutorial su come effettuare una misurazione</string>.
 
     <string name="my_account">Il mio account</string>
     <string name="measure">Misura</string>
@@ -35,41 +35,41 @@
     <string name="heartbeat_rate">Frequenza del battito cardiaco</string>
     <string name="heartbeat_rate_explain">Qui è possibile misurare la frequenza cardiaca</string>.
     <string name="click_to_measure">Clicca per misurare</string>
-    <string name="measure_heartbeat">Misurare il battito cardiaco</string>
+    <string name="measure_heartbeat">Misura</string>
     <string name="loading">Attendere per favore...</string>
     <string name="press_back_again">Premere di nuovo per uscire </string>.
     <string name="heart_rate">Frequenza cardiaca</string>
     <string name="heart_rate_value_explain">La tua frequenza cardiaca è </string>
-    <string name="bradycardia">La frequenza cardiaca è troppo bassa, potrebbe trattarsi di bradicardia. Consultare un medico.</string>
-    <string name="tachycardia">La tua frequenza cardiaca è troppo veloce, potreste avere una tachicardia. Consultare un medico.</string>
+    <string name="bradycardia">La frequenza cardiaca è troppo bassa, potrebbe trattarsi di bradicardia. Consulta un medico.</string>
+    <string name="tachycardia">La tua frequenza cardiaca è troppo veloce, potreste avere una tachicardia. Consulta un medico.</string>
     <string name="normal_heart_rate">La frequenza cardiaca è normale</string>.
     <!-- Temperatura -->
     <string name="temperature_title">Rileva la tua temperatura</string>
     <string name="temperature_explain">Qui è possibile misurare la temperatura</string>.
-    <string name="measure_temperature">Misurare la temperatura</string>
+    <string name="measure_temperature">Misura</string>
     <string name="temperature_value_explain">La tua temperatura è </string>
     <string name="high_temperature">Hai la febbre, consulta un medico.</string>
     <string name="normal_temperature">La tua temperatura è normale</string>
-    <string name="low_temperature">La tua temperatura è troppo bassa, potreste essere a rischio di ipotermia, consultate un medico.</string>
+    <string name="low_temperature">La tua temperatura è troppo bassa, potreste essere a rischio di ipotermia. Consulta un medico.</string>
     <!-- Pressione sanguigna-->
     <string name="blood_pressure_title">Rileva la pressione sanguigna</string>.
     <string name="blood_pressure_explain">Qui è possibile misurare la pressione sanguigna</string>.
-    <string name="measure_blood_pressure">Misurare la pressione sanguigna</string>
+    <string name="measure_blood_pressure">Misura</string>
     <string name="blood_pressure_value_explain">La tua pressione arteriosa è </string>
-    <string name="high_blood_pressure_slight">La tua pressione sanguigna è alta, potrebbe avere una leggera ipertensione. Consultate un medico.</string>
-    <string name="high_blood_pressure_moderate">La tua pressione sanguigna è alta, potreste avere un\'ipertensione moderata. Consultate un medico.</string>
-    <string name="high_blood_pressure_grave">La tua pressione sanguigna è alta, potreste avere un\'ipertensione grave. Consultate un medico.</string>
+    <string name="high_blood_pressure_slight">La tua pressione sanguigna è alta, potrebbe avere una leggera ipertensione. Consulta un medico.</string>
+    <string name="high_blood_pressure_moderate">La tua pressione sanguigna è alta, potreste avere un\'ipertensione moderata. Consulta un medico.</string>
+    <string name="high_blood_pressure_grave">La tua pressione sanguigna è alta, potreste avere un\'ipertensione grave. Consulta un medico.</string>
     <string name="normal_blood_pressure">La tua pressione sanguigna è normale</string>.
-    <string name="low_blood_pressure">La pressione arteriosa è troppo bassa, potrebbe trattarsi di ipotensione. Consultare un medico.</string>
+    <string name="low_blood_pressure">La pressione arteriosa è troppo bassa, potrebbe trattarsi di ipotensione. Consulta un medico.</string>
     <!-- Glicemia-->
     <string name="glycemia_title">Rileva la glicemia</string>
     <string name="glycemia_explain">Qui è possibile misurare la glicemia</string>
-    <string name="measure_glycemia">Misurare la glicemia</string>
+    <string name="measure_glycemia">Misura</string>
     <string name="glycemia_value_explain">La tua glicemia è </string>
-    <string name="high_glycemia">La tua glicemia è alta, potresti avere il diabete mellito. Consultare un medico.</string>
+    <string name="high_glycemia">La tua glicemia è alta, potresti avere il diabete mellito. Consulta un medico.</string>
     <string name="normal_glycemia">La tua glicemia è normale</string>
-    <string name="low_glycemia">La tua glicemia è troppo bassa, potreste avere un\'ipoglicemia. Consultate un medico.</string>
-    <string name="pre_diabetes">La tua glicemia è alta, potreste avere un pre-diabete. Consultate un medico.</string>
+    <string name="low_glycemia">La tua glicemia è troppo bassa, potreste avere un\'ipoglicemia. Consulta un medico.</string>
+    <string name="pre_diabetes">La tua glicemia è alta, potreste avere un pre-diabete. Consulta un medico.</string>
 
 
     <string name="records_value">Registra valore</string>
