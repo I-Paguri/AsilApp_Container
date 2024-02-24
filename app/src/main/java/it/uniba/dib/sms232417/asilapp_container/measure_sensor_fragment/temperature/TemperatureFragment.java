@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,7 @@ import it.uniba.dib.sms232417.asilapp_container.utilities.DialogDetails;
 
 public class TemperatureFragment extends Fragment{
     Context context;
+    private ImageView imageView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class TemperatureFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         context = getContext();
+        MaterialButton btnMeasure = view.findViewById(R.id.buttonMeasure);
 
         BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view); // Initialize bottomNavigationView
 
@@ -65,6 +68,8 @@ public class TemperatureFragment extends Fragment{
         // Change toolbar title text color
         toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
 
+        imageView = view.findViewById(R.id.temperature_image);
+
         // Set navigation click listener
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
@@ -81,17 +86,24 @@ public class TemperatureFragment extends Fragment{
             }
         });
 
-        MaterialButton btnTemperature = view.findViewById(R.id.buttonMeasure);
-        btnTemperature.setOnClickListener(new View.OnClickListener() {
+        btnMeasure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView imageView = requireView().findViewById(R.id.thermo_image);
-                Glide.with(getContext()).load(R.drawable.termomether).into(imageView);
+
+                // Mostra la ProgressBar e la TextView
+                ProgressBar progressBar = view.findViewById(R.id.progressBar);
+                TextView loadingText = view.findViewById(R.id.loading_text);
+
+                Glide.with(getContext())
+                        .load(R.drawable.termomether)
+                        .into((ImageView) requireView().findViewById(R.id.temperature_image));
                 RelativeLayout relativeLayout = requireView().findViewById(R.id.measure_loading_layout);
                 relativeLayout.setVisibility(View.VISIBLE);
 
-                ProgressBar progressBar = requireView().findViewById(R.id.progressBar);
+                progressBar.setVisibility(View.VISIBLE);
                 progressBar.setMax(100);
+                loadingText.setVisibility(View.VISIBLE);
+
                 new CountDownTimer(7000, 100) { // 10000 milliseconds = 10 seconds, 100 milliseconds interval
                     public void onTick(long millisUntilFinished) {
                         int progress = (int) ((7000 - millisUntilFinished) / 100);
@@ -101,8 +113,15 @@ public class TemperatureFragment extends Fragment{
 
                     public void onFinish() {
                         progressBar.setProgress(100);
-                        relativeLayout.setVisibility(View.GONE);
+                        // relativeLayout.setVisibility(View.GONE);
                         calculateTemperature();
+
+                        progressBar.setVisibility(View.GONE);
+                        loadingText.setVisibility(View.GONE);
+
+                        // Cambia l'immagine con la nuova risorsa
+                        imageView.setImageResource(R.drawable.termometro_statico);
+
                     }
                 }.start();
             }

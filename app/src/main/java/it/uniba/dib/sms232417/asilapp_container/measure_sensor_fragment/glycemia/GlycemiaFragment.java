@@ -113,6 +113,7 @@ public class GlycemiaFragment extends Fragment {
 
                     public void onFinish() {
                         progressBar.setProgress(100);
+                        // relativeLayout.setVisibility(View.GONE);
                         calculateGlycemia();
 
                         progressBar.setVisibility(View.GONE);
