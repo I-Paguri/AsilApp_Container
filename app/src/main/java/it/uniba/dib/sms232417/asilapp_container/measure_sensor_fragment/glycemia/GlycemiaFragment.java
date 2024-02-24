@@ -1,6 +1,5 @@
 package it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.glycemia;
 
-import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +32,9 @@ import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MeasureFragment;
 import it.uniba.dib.sms232417.asilapp_container.utilities.DialogDetails;
 
 public class GlycemiaFragment extends Fragment {
-    Context context;
+
+    private ImageView imageView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class GlycemiaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        MaterialButton btnMeasure = view.findViewById(R.id.buttonMeasure);
 
         BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view); // Initialize bottomNavigationView
 
@@ -64,6 +67,8 @@ public class GlycemiaFragment extends Fragment {
         // Change toolbar title text color
         toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
 
+        imageView = view.findViewById(R.id.glycemia_image);
+
         // Set navigation click listener
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
@@ -80,32 +85,43 @@ public class GlycemiaFragment extends Fragment {
             }
         });
 
-        MaterialButton btnMeasure = view.findViewById(R.id.buttonMeasure);
-        context = getContext();
+
         btnMeasure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    ImageView imageView = requireView().findViewById(R.id.glycemia_image);
-                    Glide.with(getContext()).load(R.drawable.glycemia).into(imageView);
-                    RelativeLayout relativeLayout = requireView().findViewById(R.id.measure_loading_layout);
-                    relativeLayout.setVisibility(View.VISIBLE);
 
-                    ProgressBar progressBar = requireView().findViewById(R.id.progressBar);
-                    progressBar.setMax(100);
-                    new CountDownTimer(7000, 100) { // 10000 milliseconds = 10 seconds, 100 milliseconds interval
-                        public void onTick(long millisUntilFinished) {
-                            int progress = (int) ((7000 - millisUntilFinished) / 100);
-                            progressBar.setProgress(progress);
+                // Mostra la ProgressBar e la TextView
+                ProgressBar progressBar = view.findViewById(R.id.progressBar);
+                TextView loadingText = view.findViewById(R.id.loading_text);
 
-                        }
 
-                        public void onFinish() {
-                            progressBar.setProgress(100);
-                            relativeLayout.setVisibility(View.GONE);
-                            calculateGlycemia();
+                Glide.with(getContext())
+                        .load(R.drawable.glycemia)
+                        .into((ImageView) requireView().findViewById(R.id.glycemia_image));
+                RelativeLayout relativeLayout = requireView().findViewById(R.id.measure_loading_layout);
+                relativeLayout.setVisibility(View.VISIBLE);
 
-                        }
-                    }.start();
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setMax(100);
+                loadingText.setVisibility(View.VISIBLE);
+
+                new CountDownTimer(7000, 100) { // 10000 milliseconds = 10 seconds, 100 milliseconds interval
+                    public void onTick(long millisUntilFinished) {
+                        int progress = (int) ((7000 - millisUntilFinished) / 100);
+                        progressBar.setProgress(progress);
+                    }
+
+                    public void onFinish() {
+                        progressBar.setProgress(100);
+                        calculateGlycemia();
+
+                        progressBar.setVisibility(View.GONE);
+                        loadingText.setVisibility(View.GONE);
+
+                        // Cambia l'immagine con la nuova risorsa
+                        imageView.setImageResource(R.drawable.glycemia_static);
+                    }
+                }.start();
             }
 
         });
@@ -120,21 +136,21 @@ public class GlycemiaFragment extends Fragment {
         boolean esito = false;
 
 
-        String message  = getResources().getString(R.string.glycemia_value_explain) + " " + glycemia + " mg/dL";
-        if(glycemia < 70.0){
+        String message = getResources().getString(R.string.glycemia_value_explain) + " " + glycemia + " mg/dL";
+        if (glycemia < 70.0) {
             message += "\n\n" + getResources().getString(R.string.low_glycemia);
             esito = true;
-        }else if(glycemia >125 && glycemia <= 200){
+        } else if (glycemia > 125 && glycemia <= 200) {
             message += "\n\n" + getResources().getString(R.string.high_glycemia);
             esito = true;
-        }else if(glycemia >= 70.0 && glycemia <100) {
+        } else if (glycemia >= 70.0 && glycemia < 100) {
             message += "\n\n" + getResources().getString(R.string.normal_glycemia);
-        }else if(glycemia >= 100 && glycemia <= 125) {
+        } else if (glycemia >= 100 && glycemia <= 125) {
             message += "\n\n" + getResources().getString(R.string.pre_diabetes);
             esito = true;
         }
         message += "\n\n" + getResources().getString(R.string.question_value);
         DialogDetails dialogDetails = new DialogDetails();
-        dialogDetails.showCustomDialog(getResources().getString(R.string.glycemia_title), message,context , esito, new Glycemia(glycemia));
+        dialogDetails.showCustomDialog(getResources().getString(R.string.glycemia_title), message, getContext(), esito, new Glycemia(glycemia));
     }
 }
