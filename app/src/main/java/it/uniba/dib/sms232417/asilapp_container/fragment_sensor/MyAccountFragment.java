@@ -227,7 +227,7 @@ public class MyAccountFragment extends Fragment {
                                 .load(imageUrl)
                                 .circleCrop()
                                 .into((ImageView) getView().findViewById(R.id.my_account));
-                        saveImageToInternalStorage(imageUrl);
+                        ((SensorActivity)requireActivity()).saveImageToInternalStorage(imageUrl);
                     } else {
                         // If the profile image URL does not exist or is empty, load the default profile image
                         Glide.with(getContext())
@@ -299,40 +299,5 @@ public class MyAccountFragment extends Fragment {
 
     }
 
-    public void saveImageToInternalStorage(String filename) {
-        Glide.with(getContext())
-                .asBitmap()
-                .load(filename)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        try {
-                            // Creare un file in una directory specifica
-                            File file = new File(StringUtils.IMAGE_ICON);
-                            if (file.exists()) {
-                                file.delete();
-                            }
-                            file.createNewFile();
 
-                            // Creare un FileOutputStream con il file
-                            FileOutputStream out = new FileOutputStream(file);
-
-                            // Comprimere il bitmap in un formato specifico e scrivere sul FileOutputStream
-                            resource.compress(Bitmap.CompressFormat.JPEG, 100, out);
-
-                            // Chiudere il FileOutputStream
-                            out.close();
-                            Log.d("MyAccountFragment", "Profile image saved to file: " + file.getAbsolutePath());
-                            ((SensorActivity) requireActivity()).updateIconProfileImage();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-                        // Questo metodo viene chiamato quando l'immagine non è più necessaria
-                    }
-                });
-    }
 }

@@ -34,11 +34,13 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 
+import it.uniba.dib.sms232417.asilapp_container.adapter.DatabaseAdapter;
 import it.uniba.dib.sms232417.asilapp_container.entity.Patient;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.HomeFragment;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MeasureFragment;
 
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MyAccountFragment;
+import it.uniba.dib.sms232417.asilapp_container.interfaces.OnProfileImageCallback;
 import it.uniba.dib.sms232417.asilapp_container.measure_sensor_fragment.heartbeat.HeartBeatFragment;
 import it.uniba.dib.sms232417.asilapp_container.monitor.FirebaseMonitor;
 import it.uniba.dib.sms232417.asilapp_container.thread_connection.InternetCheckThread;
@@ -49,6 +51,7 @@ public class SensorActivity extends AppCompatActivity {
     String token;
     Handler handler;
     FirebaseMonitor threadFirebaseMonitor;
+    DatabaseAdapter dbAdapter;
     private boolean doubleBackToExitPressedOnce = false;
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -58,6 +61,20 @@ public class SensorActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Patient patient = (Patient) intent.getParcelableExtra("loggedPatient");
         this.token = intent.getStringExtra("token");
+
+        dbAdapter = new DatabaseAdapter();
+        dbAdapter.getProfileImage(patient.getUUID(), new OnProfileImageCallback() {
+            @Override
+            public void onCallback(String profileImageUrl) {
+                saveImageToInternalStorage(profileImageUrl);
+            }
+
+            @Override
+            public void onCallbackError(Exception e) {
+
+            }
+
+        });
         updateIconProfileImage();
 
         handler = new Handler(new Handler.Callback() {
@@ -216,8 +233,45 @@ public class SensorActivity extends AppCompatActivity {
 
             bottomNavigationView.setItemIconTintList(null);
         }else {
-            Log.d("File_Image", "File not exists");
+
         }
+    }
+
+    public void saveImageToInternalStorage(String filename) {
+        Glide.with(getContext())
+                .asBitmap()
+                .load(filename)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        try {
+                            // Creare un file in una directory specifica
+                            File file = new File(StringUtils.IMAGE_ICON);
+                            if (file.exists()) {
+                                file.delete();
+                            }
+                            file.createNewFile();
+
+                            //   Creare un FileOutputStream con il file
+                            FileOutputStream out = new FileOutputStream(file);
+
+                            // Comprimere il bitmap in un formato specifico e scrivere sul FileOutputStream
+                            resource.compress(Bitmap.CompressFormat.JPEG, 100, out);
+
+                            // Chiudere il FileOutputStream
+                            out.close();
+                            Log.d("MyAccountFragment", "Profile image saved to file: " + file.getAbsolutePath());
+                            updateIconProfileImage();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+                        // Questo metodo viene chiamato quando l'immagine non è più necessaria
+                    }
+                });
     }
 
 }

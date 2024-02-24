@@ -1,5 +1,7 @@
 package it.uniba.dib.sms232417.asilapp_container.fragment_sensor;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import it.uniba.dib.sms232417.asilapp_container.R;
 import it.uniba.dib.sms232417.asilapp_container.SensorActivity;
@@ -78,6 +81,15 @@ public class HomeFragment extends Fragment {
             ((SensorActivity) requireActivity()).replaceFragment(new MeasureFragment());
             bottomNavigationView.setSelectedItemId(R.id.navigation_measure);
         });
+
+        MaterialCardView howToMeasure = view.findViewById(R.id.howToMeasure);
+        howToMeasure.setOnClickListener(v -> {
+            String url = "https://www.youtube.com/watch?v=h5sF5MS5utc&ab_channel=GiovanniNastro";
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
+        });
+
 
     }
 
