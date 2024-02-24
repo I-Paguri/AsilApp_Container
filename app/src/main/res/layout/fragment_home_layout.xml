@@ -53,7 +53,7 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="170dp"
                     android:layout_gravity="center_horizontal"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
@@ -104,7 +104,7 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="170dp"
                     android:src="@drawable/tutorial_illustration"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
