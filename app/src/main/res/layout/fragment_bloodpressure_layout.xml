@@ -27,25 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/measure_text"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
             android:text="@string/blood_pressure_explain" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="60dp">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonMeasure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/measure_blood_pressure" />
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -53,8 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/measure_explain_layout"
-        android:layout_centerInParent="true"
-        android:visibility="gone">
+        android:layout_centerInParent="true">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/measure_card_view"
@@ -65,17 +48,17 @@
             <RelativeLayout
                 android:id="@+id/measure_result_layout"
                 android:layout_width="230dp"
-                android:layout_height="200dp"
+                android:layout_height="220dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true">
 
                 <ImageView
                     android:id="@+id/bloodPressure_image"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp" />
-
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/blood_pressure" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
@@ -84,7 +67,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/bloodPressure_image"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/loading_text"
@@ -93,9 +77,23 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/progressBar"
                     android:layout_marginLeft="10dp"
-                    android:text="@string/loading" />
+                    android:text="@string/loading"
+                    android:visibility="gone" />
+
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonMeasure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/measure_card_view"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="@string/measure_blood_pressure" />
+
     </RelativeLayout>
+
 </RelativeLayout>

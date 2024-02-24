@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,11 +28,13 @@ import java.util.Random;
 
 import it.uniba.dib.sms232417.asilapp_container.R;
 import it.uniba.dib.sms232417.asilapp_container.entity.BloodPressure;
-import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.HomeFragment;
 import it.uniba.dib.sms232417.asilapp_container.fragment_sensor.MeasureFragment;
 import it.uniba.dib.sms232417.asilapp_container.utilities.DialogDetails;
 
 public class BloodPressureFragment extends Fragment {
+
+    private ImageView imageView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,6 +67,8 @@ public class BloodPressureFragment extends Fragment {
         // Change toolbar title text color
         toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
 
+        imageView = view.findViewById(R.id.bloodPressure_image);
+
         // Set navigation click listener
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
@@ -84,24 +89,37 @@ public class BloodPressureFragment extends Fragment {
         btnMeasure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView imageView = requireView().findViewById(R.id.bloodPressure_image);
-                Glide.with(getContext()).load(R.drawable.blood_pressure).into(imageView);
+
+                // Mostra la ProgressBar e la TextView
+                ProgressBar progressBar = view.findViewById(R.id.progressBar);
+                TextView loadingText = view.findViewById(R.id.loading_text);
+
+
+                Glide.with(getContext())
+                        .load(R.drawable.blood_pressure)
+                        .into((ImageView) requireView().findViewById(R.id.bloodPressure_image));
                 RelativeLayout relativeLayout = requireView().findViewById(R.id.measure_loading_layout);
                 relativeLayout.setVisibility(View.VISIBLE);
 
-                ProgressBar progressBar = requireView().findViewById(R.id.progressBar);
+                progressBar.setVisibility(View.VISIBLE);
                 progressBar.setMax(100);
+                loadingText.setVisibility(View.VISIBLE);
+
                 new CountDownTimer(7000, 100) { // 10000 milliseconds = 10 seconds, 100 milliseconds interval
                     public void onTick(long millisUntilFinished) {
                         int progress = (int) ((7000 - millisUntilFinished) / 100);
                         progressBar.setProgress(progress);
-
                     }
 
                     public void onFinish() {
                         progressBar.setProgress(100);
-                        relativeLayout.setVisibility(View.GONE);
                         calculateBloodPressure();
+
+                        progressBar.setVisibility(View.GONE);
+                        loadingText.setVisibility(View.GONE);
+
+                        // Cambia l'immagine con la nuova risorsa
+                        imageView.setImageResource(R.drawable.statico_blood_pressure);
                     }
                 }.start();
             }
@@ -123,23 +141,23 @@ public class BloodPressureFragment extends Fragment {
             lowLimit = 60;
             highLimit = 130;
             diastolic = lowLimit + random.nextInt(highLimit - lowLimit + 1);
-        }while(systolic < diastolic);
+        } while (systolic < diastolic);
         //La tua pressione è di sistolica/diastolica
         boolean esito = false;
-        String message = getResources().getString(R.string.blood_pressure_value_explain) +" " + systolic + " / " + diastolic + " mmHg";
+        String message = getResources().getString(R.string.blood_pressure_value_explain) + " " + systolic + " / " + diastolic + " mmHg";
 
-        if(systolic < 90 && diastolic < 60){
+        if (systolic < 90 && diastolic < 60) {
             esito = true;
             message += "\n\n" + getResources().getString(R.string.low_blood_pressure);
-        }else if(systolic > 90 && systolic <=120 && diastolic > 60 && diastolic <= 80){
+        } else if (systolic > 90 && systolic <= 120 && diastolic > 60 && diastolic <= 80) {
             message += "\n\n" + getResources().getString(R.string.normal_blood_pressure);
-        }else if(systolic > 120 && systolic <= 140 && diastolic > 80 && diastolic <= 90){
+        } else if (systolic > 120 && systolic <= 140 && diastolic > 80 && diastolic <= 90) {
             esito = true;
             message += "\n\n" + getResources().getString(R.string.high_blood_pressure_slight);
-        }else if(systolic > 140 && systolic <= 160 && diastolic > 90 && diastolic <= 100){
+        } else if (systolic > 140 && systolic <= 160 && diastolic > 90 && diastolic <= 100) {
             esito = true;
             message += "\n\n" + getResources().getString(R.string.high_blood_pressure_moderate);
-        }else if(systolic > 160 && diastolic > 100){
+        } else if (systolic > 160 && diastolic > 100) {
             esito = true;
             message += "\n\n" + getResources().getString(R.string.high_blood_pressure_grave);
         }
