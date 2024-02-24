@@ -84,7 +84,15 @@ public class HomeFragment extends Fragment {
 
         MaterialCardView howToMeasure = view.findViewById(R.id.howToMeasure);
         howToMeasure.setOnClickListener(v -> {
-            String url = "https://www.youtube.com/watch?v=h5sF5MS5utc&ab_channel=GiovanniNastro";
+            // Check if device language is italian
+            String url;
+
+            if(getResources().getConfiguration().locale.getLanguage().equals("it")) {
+                url = "https://youtu.be/dohHToygtfs";
+            } else {
+                url = "https://youtu.be/RSHqcuuh3L4";
+            }
+
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
             startActivity(intent);
