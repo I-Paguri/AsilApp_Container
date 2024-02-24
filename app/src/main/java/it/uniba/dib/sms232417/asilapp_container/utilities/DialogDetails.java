@@ -30,9 +30,10 @@ public class DialogDetails extends DialogFragment {
 
     DatabaseAdapter dbAdapter;
     Context context;
+
     public void showCustomDialog(String title, String message, Context context, boolean esito, Object o) {
         // Inflate the custom layout
-        ;
+
         this.context = context;
         Log.d("context", "showCustomDialog: " + context.toString());
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -43,9 +44,13 @@ public class DialogDetails extends DialogFragment {
         TextView messageText = view.findViewById(R.id.textResult);
         ImageView image = view.findViewById(R.id.imageResult);
 
-        if(!esito)
-            image.setVisibility(View.VISIBLE);
+        if (!esito) {
+            image.setImageResource(R.drawable.good_value);
+        } else {
+            image.setImageResource(R.drawable.bad_values);
+        }
 
+        image.setVisibility(View.VISIBLE);
         titleText.setText(title);
         messageText.setText(message);
 
@@ -77,17 +82,17 @@ public class DialogDetails extends DialogFragment {
 
                     dbAdapter.recordsValue(loggedPatient, heartRate);
 
-                }else if(o instanceof Temperature){
+                } else if (o instanceof Temperature) {
                     Log.d("Temperature", "is instance of Temperature");
                     Temperature temperature = (Temperature) o;
                     dbAdapter.recordsValue(loggedPatient, temperature);
 
-                }else if(o instanceof BloodPressure){
+                } else if (o instanceof BloodPressure) {
                     Log.d("BloodPressure", "is instance of BloodPressure");
                     BloodPressure bloodPressure = (BloodPressure) o;
 
                     dbAdapter.recordsValue(loggedPatient, bloodPressure);
-                }else if(o instanceof Glycemia){
+                } else if (o instanceof Glycemia) {
                     Log.d("Glycemia", "is instance of Glycemia");
                     Glycemia glycemia = (Glycemia) o;
                     Log.d("Date", "Glycemia: " + glycemia.getDate());

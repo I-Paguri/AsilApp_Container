@@ -3,21 +3,20 @@
     <string name="app_name">AsilApp Container</string>
     <string name="welcome_message">Benvenuto in AsilApp Container!</string>
     <string name="welcome_message_explain">Scansiona il codice QR per accedere al container</string>.
-    <string name="generate_qr">Generare codice QR</string>
-    <string name="interrupt_session">Sessione Interrotta</string>.
+    <string name="generate_qr">Genera il codice QR</string>
+    <string name="interrupt_session">Sessione interrotta</string>.
 
     <string name="no_connection">Si prega di connettersi alla rete...</string>
     <string name="no_connection_title">Nessuna connessione a Internet</string>.
-    <string name="no_connection_explain">Verificare la connessione a Internet e riprovare</string>.
+    <string name="no_connection_explain">Verifica la connessione a Internet e riprova</string>.
     <string name="no_connection_button">Riprova</string>
     <string name="no_connection_button_cancel">Annulla</string>
 
     <string name="btn_home">Home</string>
     <string name="btn_my_account">Account</string>
-    <string name="btn_add">Misurazioni</string>
     <string name="welcome">Benvenuto</string>
 
-    <string name="my_measures">Le mie misure</string>
+    <string name="my_measures">Le mie misurazioni</string>
     <string name="my_measures_explain">Qui puoi misurare parametri vitali</string>
     <string name="how_to_measure">Come misurare</string>
     <string name="how_to_measure_explain">Qui troverai un breve tutorial su come effettuare una misurazione</string>.
