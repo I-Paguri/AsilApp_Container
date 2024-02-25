@@ -47,7 +47,7 @@
     <!-- Temperatura -->
     <string name="temperature_title">Temperatura</string>
     <string name="temperature_explain">Qui è possibile misurare la temperatura</string>.
-    <string name="measure_temperature">Misura</string>
+    <string name="measure_temperature">Clicca per misurare</string>
     <string name="temperature_value_explain">La tua temperatura è </string>
     <string name="high_temperature">Hai la febbre, consulta un medico.</string>
     <string name="normal_temperature">La tua temperatura è normale</string>
@@ -55,7 +55,7 @@
     <!-- Pressione arteriosa-->
     <string name="blood_pressure_title">Pressione arteriosa</string>.
     <string name="blood_pressure_explain">Qui è possibile misurare la pressione arteriosa</string>.
-    <string name="measure_blood_pressure">Misura</string>
+    <string name="measure_blood_pressure">Clicca per misurare</string>
     <string name="blood_pressure_value_explain">La tua pressione arteriosa è </string>
     <string name="high_blood_pressure_slight">La tua pressione arteriosa è alta, potrebbe avere una leggera ipertensione. Consulta un medico.</string>
     <string name="high_blood_pressure_moderate">La tua pressione arteriosa è alta, potreste avere un\'ipertensione moderata. Consulta un medico.</string>
@@ -65,7 +65,7 @@
     <!-- Glicemia-->
     <string name="glycemia_title">Glicemia</string>
     <string name="glycemia_explain">Qui è possibile misurare la glicemia</string>
-    <string name="measure_glycemia">Misura</string>
+    <string name="measure_glycemia">Clicca per misurare</string>
     <string name="glycemia_value_explain">La tua glicemia è </string>
     <string name="high_glycemia">La tua glicemia è alta, potresti avere il diabete mellito. Consulta un medico.</string>
     <string name="normal_glycemia">La tua glicemia è normale</string>
