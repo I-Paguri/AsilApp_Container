@@ -73,10 +73,8 @@ public class HeartBeatFragment extends Fragment implements SensorEventListener{
 
         // Set toolbar title
         ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.heart_rate));
-        // Change toolbar title text color
         toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
 
-        // Set navigation click listener
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
             @Override
